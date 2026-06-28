@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sunny Heaven & Aloha Valentina — North Shore Guest Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --deep-ocean:#2F6F7E;
+    --deep-ocean-dark:#1F4D58;
+    --sea-glass:#86ACBB;
+    --soft-sand:#E9DFC9;
+    --light-foam:#F6F4EF;
+    --palm-green:#789B7A;
+    --sunset:#E3A36F;
+    --ink:#1E2E32;
+    --ink-soft:#4A5D61;
+    --radius:14px;
+    --max:760px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:var(--light-foam);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    line-height:1.1;
+    margin:0;
+  }
+  p{line-height:1.55; color:var(--ink-soft); margin:0 0 .8em;}
+  a{color:inherit;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 22px;}
+  .eyebrow{
+    font-size:.72rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--palm-green);
+    font-weight:700;
+    margin-bottom:8px;
+    display:block;
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,244,239,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(47,111,126,.12);
+  }
+  .nav-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:10px 22px;
+    max-width:var(--max); margin:0 auto;
+  }
+  .brand-mini{display:flex; align-items:center; gap:10px; text-decoration:none;}
+  .brand-mini span{font-family:'Fraunces',serif; font-weight:600; font-size:.95rem; color:var(--deep-ocean);}
+  .badge{width:38px; height:38px; flex-shrink:0; border-radius:50%; object-fit:cover; display:block; box-shadow:0 0 0 1px rgba(47,111,126,.15);}
+  .menu-btn{
+    background:none; border:none; cursor:pointer; padding:6px;
+    display:flex; flex-direction:column; gap:5px;
+  }
+  .menu-btn span{width:22px; height:2px; background:var(--deep-ocean); display:block; border-radius:2px; transition:.25s;}
+  .menu-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .menu-btn.open span:nth-child(2){opacity:0;}
+  .menu-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  nav.drop{
+    max-height:0; overflow:hidden; transition:max-height .3s ease;
+    background:var(--light-foam); border-bottom:1px solid rgba(47,111,126,.12);
+  }
+  nav.drop.open{max-height:420px;}
+  nav.drop ul{list-style:none; margin:0; padding:6px 22px 18px; max-width:var(--max); margin:0 auto;}
+  nav.drop li a{
+    display:block; padding:11px 0; text-decoration:none; color:var(--deep-ocean);
+    font-weight:600; font-size:.98rem;
+    border-bottom:1px solid rgba(47,111,126,.08);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    background:
+      linear-gradient(165deg, rgba(31,77,88,.78) 0%, rgba(31,77,88,.5) 55%, rgba(31,77,88,.72) 100%),
+      url('hero-beach-sunset.jpg') center 60%/cover no-repeat;
+    color:#fff;
+    padding:64px 0 80px;
+    overflow:hidden;
+  }
+  .hero-inner{position:relative; z-index:2;}
+  .hero .eyebrow{color:var(--sunset);}
+  .hero h1{font-size:2.1rem; color:#fff; margin-bottom:14px; text-shadow:0 2px 14px rgba(0,0,0,.18);}
+  .hero p.lead{color:rgba(255,255,255,.92); font-size:1.02rem; max-width:480px;}
+  .cta-row{display:flex; gap:12px; margin-top:24px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 22px; border-radius:999px;
+    font-weight:600; font-size:.92rem; text-decoration:none;
+    border:1px solid transparent; cursor:pointer;
+  }
+  .btn-sunset{background:var(--sunset); color:#1E2E32;}
+  .btn-ghost{border:1px solid rgba(255,255,255,.5); color:#fff;}
+
+  /* quick jump chips */
+  .chips{
+    display:flex; gap:10px; overflow-x:auto; padding:18px 22px 4px;
+    max-width:var(--max); margin:0 auto;
+    scrollbar-width:none;
+  }
+  .chips::-webkit-scrollbar{display:none;}
+  .chip{
+    flex-shrink:0; white-space:nowrap;
+    background:#fff; border:1px solid rgba(47,111,126,.18);
+    color:var(--deep-ocean); font-weight:600; font-size:.84rem;
+    padding:9px 16px; border-radius:999px; text-decoration:none;
+  }
+
+  /* ---------- WAVE DIVIDER (signature element) ---------- */
+  .wave{display:block; width:100%; height:46px; margin-top:-1px;}
+
+  /* ---------- PHOTOS ---------- */
+  .banner-photo{width:100%; height:220px; object-fit:cover; display:block;}
+  .photo-pair{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:28px; border-radius:var(--radius); overflow:hidden;}
+  .photo-pair img{width:100%; height:150px; object-fit:cover; display:block;}
+  figure.inline-figure{margin:16px 0 8px;}
+  figure.inline-figure img{width:100%; border-radius:10px; display:block; height:170px; object-fit:cover;}
+  figure.inline-figure figcaption{font-size:.74rem; color:var(--ink-soft); margin-top:6px; font-style:italic;}
+  .fav-banner{width:100%; height:170px; object-fit:cover; border-radius:var(--radius); margin-bottom:26px; display:block;}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:54px 0 60px;}
+  .bg-sand{background:var(--soft-sand);}
+  .bg-foam{background:var(--light-foam);}
+  section h2{font-size:1.6rem; color:var(--deep-ocean); margin-bottom:6px;}
+  .section-sub{margin-bottom:30px; max-width:520px;}
+
+  /* itinerary / accordion cards */
+  details.card{
+    background:#fff; border-radius:var(--radius);
+    margin-bottom:14px; border:1px solid rgba(47,111,126,.1);
+    overflow:hidden;
+  }
+  details.card summary{
+    list-style:none; cursor:pointer;
+    padding:18px 20px; display:flex; align-items:center; justify-content:space-between; gap:14px;
+  }
+  details.card summary::-webkit-details-marker{display:none;}
+  .summary-title{font-family:'Fraunces',serif; font-weight:600; font-size:1.08rem; color:var(--ink);}
+  .meta-tags{display:flex; gap:8px; margin-top:6px; flex-wrap:wrap;}
+  .tag{font-size:.7rem; font-weight:600; color:var(--palm-green); background:rgba(120,155,122,.12); padding:3px 9px; border-radius:999px;}
+  .chevron{
+    flex-shrink:0; width:22px; height:22px; border-radius:50%;
+    background:var(--soft-sand); display:flex; align-items:center; justify-content:center;
+    transition:transform .25s;
+  }
+  details[open] .chevron{transform:rotate(45deg); background:var(--sunset);}
+  .card-body{padding:0 20px 22px;}
+  .timeline{list-style:none; margin:0; padding:0;}
+  .timeline li{
+    position:relative; padding:0 0 16px 26px; border-left:2px solid var(--soft-sand);
+    margin-left:4px;
+  }
+  .timeline li:last-child{border-color:transparent; padding-bottom:0;}
+  .timeline li::before{
+    content:""; position:absolute; left:-5px; top:2px;
+    width:10px; height:10px; border-radius:50%; background:var(--sunset);
+  }
+  .timeline .t-label{font-size:.7rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--deep-ocean); display:block; margin-bottom:3px;}
+
+  /* resort guide grid */
+  .tile-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  details.tile{
+    background:#fff; border-radius:var(--radius); border:1px solid rgba(47,111,126,.1);
+    grid-column: span 1;
+  }
+  details.tile summary{padding:16px 14px; display:flex; flex-direction:column; gap:6px; cursor:pointer; list-style:none;}
+  details.tile summary::-webkit-details-marker{display:none;}
+  .tile-icon{font-size:1.4rem;}
+  .tile-name{font-weight:600; font-size:.92rem; color:var(--ink);}
+  .tile-body{padding:0 14px 16px; font-size:.86rem;}
+  .tile-body p{margin-bottom:6px; font-size:.86rem;}
+
+  /* top 10 */
+  .top10-list{list-style:none; margin:0; padding:0;}
+  .top10-list li{
+    display:flex; gap:16px; padding:16px 0; border-bottom:1px solid rgba(47,111,126,.1);
+  }
+  .top10-num{
+    font-family:'Fraunces',serif; font-weight:700; font-size:1.3rem; color:var(--sunset); width:30px; flex-shrink:0;
+  }
+  .top10-cat{font-weight:700; font-size:.95rem; color:var(--deep-ocean); margin-bottom:3px;}
+
+  /* food cards */
+  .food-grid{display:grid; gap:14px;}
+  .food-card{background:#fff; border-radius:var(--radius); padding:18px 20px; border:1px solid rgba(47,111,126,.1);}
+  .food-card h3{font-size:1.02rem; color:var(--ink); margin-bottom:4px;}
+
+  /* favorites */
+  .fav-list{list-style:none; margin:0; padding:0; display:grid; gap:14px;}
+  .fav-list li{display:flex; gap:14px; align-items:flex-start;}
+  .paw{flex-shrink:0; width:26px; height:26px; margin-top:2px;}
+  .fav-label{font-weight:700; color:var(--deep-ocean); font-size:.78rem; text-transform:uppercase; letter-spacing:.06em; display:block; margin-bottom:2px;}
+
+  /* partners */
+  .partner-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .partner-card{background:#fff; border:1px dashed rgba(47,111,126,.25); border-radius:var(--radius); padding:16px; text-align:center;}
+  .partner-card .tile-icon{display:block; margin-bottom:8px;}
+  .partner-card p{font-size:.78rem; margin:4px 0 0;}
+
+  /* book direct */
+  .book-direct{background:linear-gradient(160deg, var(--deep-ocean) 0%, var(--deep-ocean-dark) 100%); color:#fff; text-align:center;}
+  .book-direct h2{color:#fff;}
+  .qr-box{
+    width:140px; height:140px; margin:26px auto 18px;
+    background:rgba(255,255,255,.08); border:1px dashed rgba(255,255,255,.4);
+    border-radius:var(--radius); display:flex; align-items:center; justify-content:center;
+    font-size:.72rem; color:rgba(255,255,255,.6); text-align:center; padding:10px;
+  }
+
+  /* footer */
+  footer{background:var(--deep-ocean-dark); color:rgba(255,255,255,.7); padding:46px 0 30px; text-align:center;}
+  footer .badge{width:84px; height:84px; margin:0 auto 14px; box-shadow:0 0 0 2px rgba(255,255,255,.35);}
+  footer p{color:rgba(255,255,255,.55); font-size:.82rem;}
+  footer .foot-tag{font-family:'Fraunces',serif; color:#fff; font-size:1.05rem; margin-bottom:4px;}
+
+  @media (min-width:600px){
+    .hero h1{font-size:2.6rem;}
+    .tile-grid{grid-template-columns:1fr 1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-row">
+    <a href="#top" class="brand-mini">
+      <img class="badge" src="sunny-heaven-logo.png" alt="Sunny Heaven & Aloha Valentina logo">
+      <span>Sunny Heaven &amp; Aloha Valentina</span>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="drop" id="dropNav">
+    <ul>
+      <li><a href="#itineraries">Itineraries</a></li>
+      <li><a href="#turtle-bay">Turtle Bay Resort</a></li>
+      <li><a href="#top10">Sunny's Top 10</a></li>
+      <li><a href="#food">Food &amp; Drink</a></li>
+      <li><a href="#favorites">Sunny's Favorites</a></li>
+      <li><a href="#book-direct">Book Direct</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div id="top"></div>
+
+<!-- ---------- HERO ---------- -->
+<section class="hero">
+  <div class="wrap hero-inner">
+    <span class="eyebrow">North Shore, O'ahu</span>
+    <h1>Welcome to the North Shore.</h1>
+    <p class="lead">Curated adventures, local favorites, and island know-how — put together by Sunny Heaven &amp; Aloha Valentina, your home base at Turtle Bay.</p>
+    <div class="cta-row">
+      <a href="#itineraries" class="btn btn-sunset">What should we do today? →</a>
+      <a href="#turtle-bay" class="btn btn-ghost">Resort guide</a>
+    </div>
+  </div>
+</section>
+
+<div class="chips">
+  <a class="chip" href="#itineraries">🌅 Itineraries</a>
+  <a class="chip" href="#turtle-bay">🏝️ Turtle Bay</a>
+  <a class="chip" href="#top10">🔝 Top 10</a>
+  <a class="chip" href="#food">🍤 Food &amp; Drink</a>
+  <a class="chip" href="#favorites">🐾 Favorites</a>
+  <a class="chip" href="#book-direct">📩 Book Direct</a>
+</div>
+
+<img class="banner-photo" src="northshore-coastline-sunset.jpg" alt="North Shore coastline at sunset near Turtle Bay">
+
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#E9DFC9"/></svg>
+
+<!-- ---------- ITINERARIES ---------- -->
+<section class="bg-sand" id="itineraries">
+  <div class="wrap">
+    <span class="eyebrow">Plan your day</span>
+    <h2>One-Day Itineraries</h2>
+    <p class="section-sub">Three ways to spend a day on O'ahu, depending on how far you want to roam from Turtle Bay.</p>
+
+    <details class="card" open>
+      <summary>
+        <div>
+          <div class="summary-title">North Shore Day Trip</div>
+          <div class="meta-tags"><span class="tag">~25 min loop</span><span class="tag">$40–60 / person</span></div>
+        </div>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="card-body">
+        <ul class="timeline">
+          <li><span class="t-label">Morning</span>Coffee close to home, then Waimea Valley for a waterfall hike, then a shrimp truck lunch on the way north.</li>
+          <li><span class="t-label">Afternoon</span>Snorkel or tide-pool at Shark's Cove, wander the shops and galleries in Haleiwa town, then watch the surf at Sunset Beach.</li>
+          <li><span class="t-label">Evening</span>Dinner at Roy's Beach House, right here at the resort.</li>
+        </ul>
+        <figure class="inline-figure">
+          <img src="turtle-underwater.jpg" alt="Sea turtle at Shark's Cove">
+          <figcaption>Green sea turtles are common at Shark's Cove — keep a respectful distance and no touching.</figcaption>
+        </figure>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>
+        <div>
+          <div class="summary-title">East Side Adventure</div>
+          <div class="meta-tags"><span class="tag">~45 min drive</span><span class="tag">Full day</span></div>
+        </div>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="card-body">
+        <ul class="timeline">
+          <li><span class="t-label">Morning</span>Lanikai Beach for the calmest water on the island, then the Lanikai Pillbox Trail for the best lookout shot you'll take all trip.</li>
+          <li><span class="t-label">Midday</span>Byodo-In Temple tucked into the Ko'olau mountains, then lunch in Kailua town.</li>
+          <li><span class="t-label">Afternoon</span>Ho'omaluhia Botanical Garden, then a stop at Makapu'u for the lighthouse lookout on your way back.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>
+        <div>
+          <div class="summary-title">Waikiki &amp; Honolulu Day</div>
+          <div class="meta-tags"><span class="tag">~1 hr drive</span><span class="tag">Early start recommended</span></div>
+        </div>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="card-body">
+        <ul class="timeline">
+          <li><span class="t-label">Morning</span>Hike Diamond Head before it gets hot, then a quick visit to 'Iolani Palace.</li>
+          <li><span class="t-label">Afternoon</span>Browse Kaka'ako's murals and shops, then Waikiki Beach for the classic O'ahu postcard moment.</li>
+          <li><span class="t-label">Evening</span>Sunset catamaran sail, then dinner in Waikiki before the drive back north.</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" style="transform:rotate(180deg);"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#F6F4EF"/></svg>
+
+<!-- ---------- TURTLE BAY GUIDE ---------- -->
+<section class="bg-foam" id="turtle-bay">
+  <div class="wrap">
+    <span class="eyebrow">Right outside your door</span>
+    <h2>Turtle Bay Resort Guide</h2>
+    <p class="section-sub">Everything the resort offers, in one place. Tap any tile for details.</p>
+    <div class="photo-pair">
+      <img src="turtle-swimming-surface.jpg" alt="Sea turtle swimming near Turtle Bay">
+      <img src="surfboards-fence.jpg" alt="Surfboards along the North Shore">
+    </div>
+    <div class="tile-grid">
+
+      <details class="tile"><summary><span class="tile-icon">🏊</span><span class="tile-name">Pools</span></summary>
+        <div class="tile-body"><p>[ Add pool hours, towel policy, and which pool is quietest ]</p></div></details>
+
+      <details class="tile"><summary><span class="tile-icon">⛳</span><span class="tile-name">Golf</span></summary>
+        <div class="tile-body"><p>[ Add tee time booking info and course highlights ]</p></div></details>
+
+      <details class="tile"><summary><span class="tile-icon">🍽️</span><span class="tile-name">Restaurants</span></summary>
+        <div class="tile-body"><p>[ List on-property restaurants and reservation tips ]</p></div></details>
+
+      <details class="tile"><summary><span class="tile-icon">💆</span><span class="tile-name">Spa</span></summary>
+        <div class="tile-body"><p>[ Add spa booking link and signature treatment ]</p></div></details>
+
+      <details class="tile"><summary><span class="tile-icon">🐎</span><span class="tile-name">Horseback Riding</span></summary>
+        <div class="tile-body"><p>[ Add booking info and best time of day ]</p></div></details>
+
+      <details class="tile"><summary><span class="tile-icon">🏄</span><span class="tile-name">Surf Lessons</span></summary>
+        <div class="tile-body"><p>[ Add instructor contact and skill-level notes ]</p></div></details>
+
+      <details class="tile"><summary><span class="tile-icon">🎾</span><span class="tile-name">Tennis &amp; Pickleball</span></summary>
+        <div class="tile-body"><p>[ Add court hours and reservation process ]</p></div></details>
+
+      <details class="tile"><summary><span class="tile-icon">🚶</span><span class="tile-name">Trails &amp; Helicopters</span></summary>
+        <div class="tile-body"><p>[ Add walking trail map and helicopter tour contact ]</p></div></details>
+
+    </div>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#E9DFC9"/></svg>
+
+<!-- ---------- TOP 10 ---------- -->
+<section class="bg-sand" id="top10">
+  <div class="wrap">
+    <span class="eyebrow">Sunny's picks</span>
+    <h2>Sunny's Top 10</h2>
+    <p class="section-sub">Starter recommendations — swap any of these out for your own favorites anytime.</p>
+    <ul class="top10-list">
+      <li><span class="top10-num">01</span><div><div class="top10-cat">Best Beaches</div><p>Sunset Beach, Waimea Bay, Ehukai (Banzai Pipeline)</p></div></li>
+      <li><span class="top10-num">02</span><div><div class="top10-cat">Best Sunsets</div><p>The point at Turtle Bay, and Sunset Beach</p></div></li>
+      <li><span class="top10-num">03</span><div><div class="top10-cat">Best Shrimp</div><p>Macky's, Giovanni's, Fumi's</p></div></li>
+      <li><span class="top10-num">04</span><div><div class="top10-cat">Best Hikes</div><p>Kaunala Trail, Ke Nui Trail along the shore</p></div></li>
+      <li><span class="top10-num">05</span><div><div class="top10-cat">Best Family Activities</div><p>Waimea Valley, Dole Plantation</p></div></li>
+      <li><span class="top10-num">06</span><div><div class="top10-cat">Best Rainy Day Activities</div><p>Haleiwa's galleries and shops, North Shore Marketplace</p></div></li>
+      <li><span class="top10-num">07</span><div><div class="top10-cat">Best Date Ideas</div><p>Sunset at the point, dinner at Lei Lei's</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" style="transform:rotate(180deg);"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#F6F4EF"/></svg>
+
+<!-- ---------- FOOD & DRINK ---------- -->
+<section class="bg-foam" id="food">
+  <div class="wrap">
+    <span class="eyebrow">Eat like a local</span>
+    <h2>Food &amp; Drink</h2>
+    <p class="section-sub">A short list, on purpose. These are the spots worth the detour.</p>
+    <div class="food-grid">
+      <div class="food-card"><h3>Shrimp Trucks</h3><p>Macky's, Giovanni's, and Fumi's all sit along the North Shore — order the garlic shrimp plate.</p></div>
+      <div class="food-card"><h3>Haleiwa Town</h3><p>Walk Kamehameha Highway for shave ice, açai bowls, and local art galleries.</p></div>
+      <div class="food-card"><h3>Roy's Beach House</h3><p>Right on property at Turtle Bay — easiest dinner option after a full day out.</p></div>
+    </div>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#E9DFC9"/></svg>
+
+<!-- ---------- SUNNY'S FAVORITES ---------- -->
+<section class="bg-sand" id="favorites">
+  <div class="wrap">
+    <span class="eyebrow">From the dog who lives here</span>
+    <h2>Sunny's Favorites</h2>
+    <p class="section-sub">Personal picks, not a tourist list.</p>
+    <img class="fav-banner" src="aloha-surfboards.jpg" alt="Colorful Aloha surfboard sign on the North Shore">
+    <ul class="fav-list">
+      <li>
+        <svg class="paw" viewBox="0 0 24 24" fill="#789B7A"><circle cx="12" cy="15" r="5"/><circle cx="5" cy="9" r="2.6"/><circle cx="19" cy="9" r="2.6"/><circle cx="8.5" cy="5" r="2.4"/><circle cx="15.5" cy="5" r="2.4"/></svg>
+        <div><span class="fav-label">Coffee</span><p>[ Add Sunny's go-to coffee stop ]</p></div>
+      </li>
+      <li>
+        <svg class="paw" viewBox="0 0 24 24" fill="#789B7A"><circle cx="12" cy="15" r="5"/><circle cx="5" cy="9" r="2.6"/><circle cx="19" cy="9" r="2.6"/><circle cx="8.5" cy="5" r="2.4"/><circle cx="15.5" cy="5" r="2.4"/></svg>
+        <div><span class="fav-label">Sunset Spot</span><p>The point at Turtle Bay, every evening without fail.</p></div>
+      </li>
+      <li>
+        <svg class="paw" viewBox="0 0 24 24" fill="#789B7A"><circle cx="12" cy="15" r="5"/><circle cx="5" cy="9" r="2.6"/><circle cx="19" cy="9" r="2.6"/><circle cx="8.5" cy="5" r="2.4"/><circle cx="15.5" cy="5" r="2.4"/></svg>
+        <div><span class="fav-label">Beach</span><p>Kawela Bay — quieter and just down the road.</p></div>
+      </li>
+      <li>
+        <svg class="paw" viewBox="0 0 24 24" fill="#789B7A"><circle cx="12" cy="15" r="5"/><circle cx="5" cy="9" r="2.6"/><circle cx="19" cy="9" r="2.6"/><circle cx="8.5" cy="5" r="2.4"/><circle cx="15.5" cy="5" r="2.4"/></svg>
+        <div><span class="fav-label">Photography Spot</span><p>The ironwood trees along Kawela Bay, especially early morning.</p></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" style="transform:rotate(180deg);"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#F6F4EF"/></svg>
+
+<!-- ---------- LOCAL PARTNERS ---------- -->
+<section class="bg-foam">
+  <div class="wrap">
+    <span class="eyebrow">Need a hand?</span>
+    <h2>Recommended Local Partners</h2>
+    <p class="section-sub">People we know and trust on the North Shore. Add contact details when you're ready.</p>
+    <div class="partner-grid">
+      <div class="partner-card"><span class="tile-icon">📷</span>Photographer<p>[ Add contact ]</p></div>
+      <div class="partner-card"><span class="tile-icon">🏄</span>Surf Instructor<p>[ Add contact ]</p></div>
+      <div class="partner-card"><span class="tile-icon">💆</span>Massage Therapist<p>[ Add contact ]</p></div>
+      <div class="partner-card"><span class="tile-icon">👨‍🍳</span>Private Chef<p>[ Add contact ]</p></div>
+      <div class="partner-card"><span class="tile-icon">🧺</span>Picnic Setup<p>[ Add contact ]</p></div>
+      <div class="partner-card"><span class="tile-icon">🎣</span>Fishing Charter<p>[ Add contact ]</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- BOOK DIRECT ---------- -->
+<section class="book-direct" id="book-direct">
+  <div class="wrap">
+    <span class="eyebrow" style="color:var(--sunset);">Loved your stay?</span>
+    <h2>Book direct next time.</h2>
+    <p style="color:rgba(255,255,255,.8); max-width:420px; margin:10px auto 0;">Skip the platform fees — message us directly and we'll take care of the rest.</p>
+    <div class="qr-box">[ Add booking / contact QR code ]</div>
+    <div class="cta-row" style="justify-content:center;">
+      <a href="mailto:hello@example.com" class="btn btn-sunset">Email us →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <img class="badge" src="sunny-heaven-logo.png" alt="Sunny Heaven & Aloha Valentina logo">
+    <div class="foot-tag">Sunny Heaven &amp; Aloha Valentina</div>
+    <p>Turtle Bay Resort, North Shore O'ahu</p>
+    <p style="margin-top:18px;">Built for our guests, with aloha.</p>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const dropNav = document.getElementById('dropNav');
+  menuBtn.addEventListener('click', () => {
+    const isOpen = dropNav.classList.toggle('open');
+    menuBtn.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', isOpen);
+  });
+  dropNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    dropNav.classList.remove('open');
+    menuBtn.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', false);
+  }));
+</script>
+
+</body>
+</html>
