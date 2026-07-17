@@ -271,47 +271,34 @@
   .unit-card{
     background:#fff; border-radius:var(--radius); border:1px solid rgba(47,111,126,.12);
     overflow:hidden; margin-bottom:28px;
+    box-shadow:0 8px 24px rgba(31,77,88,.07);
   }
-  .unit-header{
-    padding:18px 20px 14px;
-    border-bottom:1px solid rgba(47,111,126,.08);
+
+  /* ---------- HERO PHOTO WITH TEXT OVERLAY ---------- */
+  .unit-hero{
+    position:relative; width:100%; height:300px;
+    background-size:cover; background-position:center;
+  }
+  .unit-hero::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(185deg, rgba(31,77,88,.05) 30%, rgba(20,42,48,.88) 100%);
+  }
+  .unit-hero-text{
+    position:absolute; left:0; right:0; bottom:0; z-index:2;
+    padding:22px 22px 20px; color:#fff;
   }
   .unit-name{
-    font-family:'Fraunces',serif; font-weight:700; font-size:1.3rem;
-    color:var(--deep-ocean); margin-bottom:3px;
+    font-family:'Fraunces',serif; font-weight:700; font-size:1.55rem;
+    color:#fff; margin-bottom:4px; text-shadow:0 2px 10px rgba(0,0,0,.2);
   }
-  .unit-location{font-size:.76rem; color:var(--ink-soft); font-weight:500;}
-
-  /* ---------- PHOTO GALLERY: hero + thumbnail strip ---------- */
-  .unit-hero{
-    position:relative; width:100%; height:260px; overflow:hidden; cursor:pointer;
-    background:linear-gradient(135deg, var(--sea-glass), var(--deep-ocean));
+  .unit-location{font-size:.78rem; color:rgba(255,255,255,.88); font-weight:500; margin-bottom:12px;}
+  .unit-specs{display:flex; gap:7px; flex-wrap:wrap;}
+  .unit-spec{
+    background:rgba(255,255,255,.16); backdrop-filter:blur(6px);
+    border:1px solid rgba(255,255,255,.25);
+    color:#fff; font-size:.74rem; font-weight:600;
+    padding:5px 12px; border-radius:999px;
   }
-  .unit-hero-slide{
-    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-    opacity:0; transition:opacity .35s ease; font-size:.8rem; color:rgba(255,255,255,.75);
-    font-weight:600; text-align:center; padding:20px;
-  }
-  .unit-hero-slide.active{opacity:1;}
-  .unit-hero-slide img{width:100%; height:100%; object-fit:cover; display:block;}
-  .unit-hero-tap{
-    position:absolute; bottom:12px; right:12px; background:rgba(31,77,88,.72);
-    color:#fff; border-radius:999px; padding:6px 14px; font-size:.7rem; font-weight:600;
-    display:flex; align-items:center; gap:5px; pointer-events:none; backdrop-filter:blur(3px);
-  }
-  .unit-thumbs{
-    display:flex; gap:8px; overflow-x:auto; padding:12px 20px 20px; scrollbar-width:none;
-  }
-  .unit-thumbs::-webkit-scrollbar{display:none;}
-  .unit-thumb{
-    flex:0 0 auto; width:64px; height:64px; border-radius:10px; overflow:hidden;
-    cursor:pointer; border:2.5px solid transparent; opacity:.6; transition:opacity .2s, border-color .2s;
-    background:linear-gradient(135deg, var(--sea-glass), var(--deep-ocean));
-    display:flex; align-items:center; justify-content:center;
-    font-size:.58rem; color:rgba(255,255,255,.85); font-weight:700; text-align:center;
-  }
-  .unit-thumb.active{opacity:1; border-color:var(--sunset);}
-  .unit-thumb img{width:100%; height:100%; object-fit:cover; display:block;}
 
   .unit-features{
     display:flex; gap:0; flex-wrap:wrap;
@@ -325,48 +312,18 @@
   }
   .unit-feature:last-child{border-right:none;}
   .unit-icon{font-size:1rem;}
-  .unit-desc{padding:14px 20px 18px; margin:0; font-size:.88rem;}
-  .unit-book-row{padding:0 20px 20px;}
+  .unit-desc{padding:18px 20px 4px; margin:0; font-size:.88rem;}
+  .unit-book-row{padding:14px 20px 20px; display:flex; flex-direction:column; gap:10px;}
   .btn-airbnb{
     display:inline-flex; align-items:center; gap:8px; width:100%;
     justify-content:center; padding:13px 22px; border-radius:999px;
     font-weight:600; font-size:.9rem; text-decoration:none;
     background:#FF385C; color:#fff;
   }
-
-  /* fullscreen lightbox, shared across both units */
-  .lightbox{
-    position:fixed; inset:0; background:rgba(18,28,30,.95); z-index:300;
-    display:none; align-items:center; justify-content:center; padding:24px;
-  }
-  .lightbox.open{display:flex;}
-  .lightbox-frame{
-    position:relative; width:100%; max-width:460px; height:70vh;
-    display:flex; align-items:center; justify-content:center;
-  }
-  .lightbox-frame img{max-width:100%; max-height:100%; border-radius:12px; object-fit:contain;}
-  .lightbox-placeholder{
-    width:100%; height:100%; border-radius:12px; display:flex; align-items:center; justify-content:center;
-    color:#fff; font-weight:600; font-size:.9rem; text-align:center; padding:20px;
-    background:linear-gradient(135deg, var(--sea-glass), var(--deep-ocean));
-  }
-  .lightbox-close{
-    position:absolute; top:22px; right:22px; width:40px; height:40px; border-radius:50%;
-    background:rgba(255,255,255,.14); color:#fff; border:none; font-size:1.2rem; cursor:pointer; z-index:2;
-  }
-  .lightbox-nav{
-    position:absolute; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%;
-    background:rgba(255,255,255,.14); color:#fff; border:none; font-size:1.2rem; cursor:pointer; z-index:2;
-  }
-  .lightbox-prev{left:6px;}
-  .lightbox-next{right:6px;}
-  .lightbox-counter{
-    position:absolute; bottom:-34px; left:50%; transform:translateX(-50%);
-    color:rgba(255,255,255,.7); font-size:.78rem; font-weight:600;
-  }
+  .unit-book-note{font-size:.76rem; color:var(--ink-soft); text-align:center; margin:0;}
 
   @media (min-width:500px){
-    .unit-hero{height:340px;}
+    .unit-hero{height:380px;}
   }
   .book-direct{background:linear-gradient(160deg, var(--deep-ocean) 0%, var(--deep-ocean-dark) 100%); color:#fff; text-align:center;}
   .book-direct h2{color:#fff;}
@@ -658,16 +615,23 @@
       <summary>
         <div>
           <div class="summary-title">Waikiki &amp; Honolulu Day</div>
-          <div class="meta-tags"><span class="tag">~1 hr drive</span><span class="tag">Early start recommended</span></div>
+          <div class="meta-tags"><span class="tag">Full day</span><span class="tag">Diamond Head reservation required</span></div>
         </div>
         <span class="chevron">+</span>
       </summary>
       <div class="card-body">
         <ul class="timeline">
-          <li><span class="t-label">Morning</span>Hike Diamond Head before it gets hot, then a quick visit to 'Iolani Palace.</li>
-          <li><span class="t-label">Afternoon</span>Browse Kaka'ako's murals and shops, then Waikiki Beach for the classic O'ahu postcard moment.</li>
-          <li><span class="t-label">Evening</span>Sunset catamaran sail, then dinner in Waikiki before the drive back north.</li>
+          <li><span class="t-label">7:00 AM</span>Hike Diamond Head before it gets hot and crowded — a reservation is required in advance for entry and parking. (60–90 min)</li>
+          <li><span class="t-label">8:30 AM</span>Breakfast nearby before heading into town.</li>
+          <li><span class="t-label">10:00 AM</span>Kaka'ako — explore the neighborhood's murals, boutiques, and shops.</li>
+          <li><span class="t-label">11:30 AM</span>Lunch at Hana Koa Brewing Co. in Kaka'ako.</li>
+          <li><span class="t-label">1:00 PM</span>Visit a museum — the Honolulu Museum of Art or the Bishop Museum are both excellent choices.</li>
+          <li><span class="t-label">3:00 PM</span>Head to Waikiki for a surf lesson or to relax on the beach.</li>
+          <li><span class="t-label">5:00 PM</span>Grab a drink at Duke's Waikiki, or book an afternoon catamaran sail for ocean views.</li>
+          <li><span class="t-label">7:00 PM</span>Dinner in Waikiki, or head to Chinatown — Fête is our recommendation.</li>
+          <li><span class="t-label">~8:30 PM</span>Drive back to Turtle Bay — about 1.5 hours, maybe a little less.</li>
         </ul>
+        <p class="note-text">Insider tips: book your Diamond Head reservation online well ahead of time — time slots fill up fast — and start early to make the most of the day before Honolulu traffic picks up.</p>
         <p class="note-text">Prefer an ocean-focused day instead? Swap in Hanauma Bay for snorkeling, Sea Life Park, and the Makapu'u Lighthouse trail.</p>
       </div>
     </details>
@@ -690,7 +654,7 @@
     <ul class="fav-list">
       <li>
         <svg class="paw" viewBox="0 0 24 24" fill="#789B7A"><circle cx="12" cy="15" r="5"/><circle cx="5" cy="9" r="2.6"/><circle cx="19" cy="9" r="2.6"/><circle cx="8.5" cy="5" r="2.4"/><circle cx="15.5" cy="5" r="2.4"/></svg>
-        <div><span class="fav-label">Coffee</span><p>[ Add Sunny Girl's go-to coffee stop ]</p></div>
+        <div><span class="fav-label">Coffee</span><p>Sunrise Shack, right across the street from Sunset Beach.</p></div>
       </li>
       <li>
         <svg class="paw" viewBox="0 0 24 24" fill="#789B7A"><circle cx="12" cy="15" r="5"/><circle cx="5" cy="9" r="2.6"/><circle cx="19" cy="9" r="2.6"/><circle cx="8.5" cy="5" r="2.4"/><circle cx="15.5" cy="5" r="2.4"/></svg>
@@ -703,6 +667,10 @@
       <li>
         <svg class="paw" viewBox="0 0 24 24" fill="#789B7A"><circle cx="12" cy="15" r="5"/><circle cx="5" cy="9" r="2.6"/><circle cx="19" cy="9" r="2.6"/><circle cx="8.5" cy="5" r="2.4"/><circle cx="15.5" cy="5" r="2.4"/></svg>
         <div><span class="fav-label">Photography Spot</span><p>The ironwood trees along Kawela Bay, especially early morning.</p></div>
+      </li>
+      <li>
+        <svg class="paw" viewBox="0 0 24 24" fill="#789B7A"><circle cx="12" cy="15" r="5"/><circle cx="5" cy="9" r="2.6"/><circle cx="19" cy="9" r="2.6"/><circle cx="8.5" cy="5" r="2.4"/><circle cx="15.5" cy="5" r="2.4"/></svg>
+        <div><span class="fav-label">Town to Visit</span><p>Kailua — cute town vibes and a 2.5-mile beach with dog-friendly areas.</p></div>
       </li>
     </ul>
 
@@ -771,80 +739,53 @@
 
     <!-- UNIT 1: SUNNY HEAVEN -->
     <div class="unit-card">
-      <div class="unit-header">
-        <div class="unit-name">Sunny Heaven</div>
-        <div class="unit-location">Kuilima Condo Association · Turtle Bay Resort</div>
-      </div>
-      <!-- Photo gallery: to add real photos, replace each placeholder div with
-           <img src="filename.jpg" alt="..."> inside .unit-hero-slide and .unit-thumb -->
-      <div class="unit-hero" data-gallery="sh" onclick="openLightbox('sh')">
-        <div class="unit-hero-slide active">[ Sunny Heaven — Photo 1 ]</div>
-        <div class="unit-hero-slide">[ Sunny Heaven — Photo 2 ]</div>
-        <div class="unit-hero-slide">[ Sunny Heaven — Photo 3 ]</div>
-        <div class="unit-hero-slide">[ Sunny Heaven — Photo 4 ]</div>
-        <div class="unit-hero-slide">[ Sunny Heaven — Photo 5 ]</div>
-        <div class="unit-hero-tap">⤢ Tap to enlarge</div>
-      </div>
-      <div class="unit-thumbs" data-gallery="sh">
-        <div class="unit-thumb active" onclick="event.stopPropagation(); showSlide('sh',0)">1</div>
-        <div class="unit-thumb" onclick="event.stopPropagation(); showSlide('sh',1)">2</div>
-        <div class="unit-thumb" onclick="event.stopPropagation(); showSlide('sh',2)">3</div>
-        <div class="unit-thumb" onclick="event.stopPropagation(); showSlide('sh',3)">4</div>
-        <div class="unit-thumb" onclick="event.stopPropagation(); showSlide('sh',4)">5</div>
+      <div class="unit-hero" style="background-image:url('sunny-heaven-hero.avif')">
+        <div class="unit-hero-text">
+          <div class="unit-name">Sunny Heaven</div>
+          <div class="unit-location">Kuilima Condo Association · Turtle Bay Resort</div>
+          <div class="unit-specs">
+            <span class="unit-spec">6 guests</span>
+            <span class="unit-spec">2 bedrooms</span>
+            <span class="unit-spec">2 beds</span>
+            <span class="unit-spec">2 baths</span>
+          </div>
+        </div>
       </div>
       <div class="unit-features">
-        <div class="unit-feature"><span class="unit-icon">🅿️</span><span>Reserved parking</span></div>
-        <div class="unit-feature"><span class="unit-icon">🏊</span><span>Community pool access</span></div>
-        <div class="unit-feature"><span class="unit-icon">🍳</span><span>Full kitchen</span></div>
-        <div class="unit-feature"><span class="unit-icon">🌊</span><span>Steps from the ocean</span></div>
+        <div class="unit-feature"><span class="unit-icon">❄️</span><span>Fully air conditioned</span></div>
+        <div class="unit-feature"><span class="unit-icon">🏌️</span><span>Overlooks 1st fairway</span></div>
+        <div class="unit-feature"><span class="unit-icon">🍳</span><span>Upgraded granite kitchen</span></div>
+        <div class="unit-feature"><span class="unit-icon">🧺</span><span>Full-size washer/dryer</span></div>
       </div>
-      <p class="unit-desc">[ Add unit description — beds, baths, views, standout features ]</p>
+      <p class="unit-desc">Beautiful second-story end unit in a great location on the 1st tee. A screened-in lanai overlooks the first fairway of the Fazio golf course, and the upgraded kitchen features granite countertops and WiFi throughout. Ceiling fans keep things comfortable in every room. Sleeps 6: a king bed in the master bedroom, two beds in the loft, plus a pull-out couch in the living area. All linens and towels provided. The community offers a pool and tennis/pickleball courts.</p>
       <div class="unit-book-row">
-        <a class="btn-airbnb" href="https://airbnb.com/h/sunnylovesturtlebay3" target="_blank" rel="noopener">Book on Airbnb →</a>
+        <a class="btn-airbnb" href="https://airbnb.com/h/sunnylovesturtlebay3" target="_blank" rel="noopener">See more photos & book on Airbnb →</a>
       </div>
     </div>
 
     <!-- UNIT 2: ALOHA VALENTINA -->
     <div class="unit-card">
-      <div class="unit-header">
-        <div class="unit-name">Aloha Valentina</div>
-        <div class="unit-location">Kuilima Condo Association · Turtle Bay Resort</div>
-      </div>
-      <div class="unit-hero" data-gallery="av" onclick="openLightbox('av')">
-        <div class="unit-hero-slide active">[ Aloha Valentina — Photo 1 ]</div>
-        <div class="unit-hero-slide">[ Aloha Valentina — Photo 2 ]</div>
-        <div class="unit-hero-slide">[ Aloha Valentina — Photo 3 ]</div>
-        <div class="unit-hero-slide">[ Aloha Valentina — Photo 4 ]</div>
-        <div class="unit-hero-slide">[ Aloha Valentina — Photo 5 ]</div>
-        <div class="unit-hero-tap">⤢ Tap to enlarge</div>
-      </div>
-      <div class="unit-thumbs" data-gallery="av">
-        <div class="unit-thumb active" onclick="event.stopPropagation(); showSlide('av',0)">1</div>
-        <div class="unit-thumb" onclick="event.stopPropagation(); showSlide('av',1)">2</div>
-        <div class="unit-thumb" onclick="event.stopPropagation(); showSlide('av',2)">3</div>
-        <div class="unit-thumb" onclick="event.stopPropagation(); showSlide('av',3)">4</div>
-        <div class="unit-thumb" onclick="event.stopPropagation(); showSlide('av',4)">5</div>
+      <div class="unit-hero" style="background-image:url('aloha-valentina-hero.avif')">
+        <div class="unit-hero-text">
+          <div class="unit-name">Aloha Valentina</div>
+          <div class="unit-location">Kuilima Condo Association · Turtle Bay Resort</div>
+          <div class="unit-specs">
+            <span class="unit-spec">6 guests</span>
+            <span class="unit-spec">3 bedrooms</span>
+            <span class="unit-spec">4 beds</span>
+            <span class="unit-spec">2 baths</span>
+          </div>
+        </div>
       </div>
       <div class="unit-features">
-        <div class="unit-feature"><span class="unit-icon">🅿️</span><span>Reserved parking</span></div>
-        <div class="unit-feature"><span class="unit-icon">🏊</span><span>Community pool access</span></div>
-        <div class="unit-feature"><span class="unit-icon">🍳</span><span>Full kitchen</span></div>
-        <div class="unit-feature"><span class="unit-icon">🌊</span><span>Steps from the ocean</span></div>
+        <div class="unit-feature"><span class="unit-icon">🏆</span><span>Fully remodeled</span></div>
+        <div class="unit-feature"><span class="unit-icon">🏌️</span><span>Golf course & sunset views</span></div>
+        <div class="unit-feature"><span class="unit-icon">🏖️</span><span>Minutes' walk to the beach</span></div>
+        <div class="unit-feature"><span class="unit-icon">📐</span><span>High ceilings, loft area</span></div>
       </div>
-      <p class="unit-desc">[ Add unit description — beds, baths, views, standout features ]</p>
+      <p class="unit-desc">Best location — a fully remodeled two-story condo with two bedrooms plus a loft and high ceilings, overlooking the Fazio Golf Course and the beautifully manicured grounds of Turtle Bay Resort. This peaceful North Shore setting is close to all the great beaches and destinations the North Shore has to offer. Known as the "Gold Coast" at Kuilima West, this section looks across a fairway toward the ocean with gorgeous sunsets, just a few minutes' walk to the beach and Turtle Bay Hotel.</p>
       <div class="unit-book-row">
-        <a class="btn-airbnb" href="https://airbnb.com/h/sunnylovesturtlebay2" target="_blank" rel="noopener">Book on Airbnb →</a>
-      </div>
-    </div>
-
-    <!-- Fullscreen lightbox (shared by both units) -->
-    <div class="lightbox" id="lightbox" onclick="if(event.target===this) closeLightbox()">
-      <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-      <div class="lightbox-frame">
-        <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation(); navLightbox(-1)">‹</button>
-        <div class="lightbox-placeholder" id="lightbox-content">[ Photo ]</div>
-        <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation(); navLightbox(1)">›</button>
-        <div class="lightbox-counter" id="lightbox-counter">1 / 5</div>
+        <a class="btn-airbnb" href="https://airbnb.com/h/sunnylovesturtlebay2" target="_blank" rel="noopener">See more photos & book on Airbnb →</a>
       </div>
     </div>
 
@@ -886,58 +827,6 @@
     menuBtn.classList.remove('open');
     menuBtn.setAttribute('aria-expanded', false);
   }));
-
-  // ---------- Unit photo gallery + lightbox ----------
-  const galleryState = { sh: 0, av: 0 };
-  const galleryCount = { sh: 5, av: 5 };
-  let activeGallery = null;
-
-  function showSlide(id, index) {
-    galleryState[id] = index;
-    const hero = document.querySelector(`.unit-hero[data-gallery="${id}"]`);
-    const thumbs = document.querySelector(`.unit-thumbs[data-gallery="${id}"]`);
-    hero.querySelectorAll('.unit-hero-slide').forEach((el, i) => el.classList.toggle('active', i === index));
-    thumbs.querySelectorAll('.unit-thumb').forEach((el, i) => el.classList.toggle('active', i === index));
-    if (activeGallery === id) updateLightboxContent(id, index);
-  }
-
-  function openLightbox(id) {
-    activeGallery = id;
-    const lb = document.getElementById('lightbox');
-    lb.classList.add('open');
-    updateLightboxContent(id, galleryState[id]);
-  }
-
-  function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('open');
-    activeGallery = null;
-  }
-
-  function navLightbox(dir) {
-    if (!activeGallery) return;
-    const count = galleryCount[activeGallery];
-    let next = (galleryState[activeGallery] + dir + count) % count;
-    showSlide(activeGallery, next);
-  }
-
-  function updateLightboxContent(id, index) {
-    const heroSlide = document.querySelectorAll(`.unit-hero[data-gallery="${id}"] .unit-hero-slide`)[index];
-    const content = document.getElementById('lightbox-content');
-    const img = heroSlide.querySelector('img');
-    if (img) {
-      content.outerHTML = `<img id="lightbox-content" src="${img.src}" alt="${img.alt}">`;
-    } else {
-      content.textContent = heroSlide.textContent;
-    }
-    document.getElementById('lightbox-counter').textContent = `${index + 1} / ${galleryCount[id]}`;
-  }
-
-  document.addEventListener('keydown', (e) => {
-    if (!document.getElementById('lightbox').classList.contains('open')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') navLightbox(-1);
-    if (e.key === 'ArrowRight') navLightbox(1);
-  });
 </script>
 
 </body>
