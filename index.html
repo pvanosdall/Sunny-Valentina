@@ -50,13 +50,15 @@
   }
   .subhead{
     font-family:'Fraunces',serif; font-weight:600; color:var(--deep-ocean);
-    font-size:1.05rem; margin:34px 0 14px;
+    font-size:1.15rem; margin:38px 0 6px;
   }
   .subhead:first-of-type{margin-top:6px;}
+  .subhead-note{font-size:.86rem; margin-bottom:18px; max-width:520px;}
   .note-text{font-size:.78rem; color:var(--ink-soft); font-style:italic; margin-top:10px;}
+  .divider-line{border:none; border-top:1px solid rgba(47,111,126,.14); margin:42px 0 0;}
 
   /* link styling wherever it appears inside body copy */
-  .tile-body a, .card-body a, .food-card a, .partner-card a, figure figcaption a, .dog-card a, .top10-list a{
+  .tile-body a, .card-body a, .food-card a, .partner-card a, figure figcaption a, .top10-list a{
     color:var(--deep-ocean); font-weight:600; text-decoration-line:underline;
     text-decoration-color:var(--sunset); text-decoration-thickness:1.5px;
   }
@@ -89,7 +91,7 @@
     max-height:0; overflow:hidden; transition:max-height .3s ease;
     background:var(--light-foam); border-bottom:1px solid rgba(47,111,126,.12);
   }
-  nav.drop.open{max-height:520px;}
+  nav.drop.open{max-height:320px;}
   nav.drop ul{list-style:none; margin:0; padding:6px 22px 18px; max-width:var(--max); margin:0 auto;}
   nav.drop li a{
     display:block; padding:11px 0; text-decoration:none; color:var(--deep-ocean);
@@ -209,13 +211,27 @@
     font-family:'Fraunces',serif; font-weight:700; font-size:1.3rem; color:var(--sunset); width:30px; flex-shrink:0;
   }
   .top10-list p{margin:0; font-size:.9rem;}
+  .top10-source{font-size:.68rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--palm-green); display:block; margin-top:3px;}
 
   /* food / dog-stop cards */
   .food-grid{display:grid; gap:14px;}
-  .food-card{background:#fff; border-radius:var(--radius); padding:18px 20px; border:1px solid rgba(47,111,126,.1);}
+  .food-card{background:#fff; border-radius:var(--radius); padding:18px 20px; border:1px solid rgba(47,111,126,.1); border-left:4px solid var(--sea-glass);}
+  .food-card.resort{border-left-color:var(--deep-ocean);}
+  .food-card.nearby{border-left-color:var(--palm-green);}
+  .food-card.haleiwa{border-left-color:var(--sunset);}
+  .food-card.pupukea{border-left-color:#9B8B6E;}
   .food-card h3{font-size:1.02rem; color:var(--ink); margin-bottom:4px;}
   .food-card h4{font-size:.95rem; color:var(--ink); margin:0 0 4px; font-family:'Fraunces',serif; font-weight:600;}
   .food-card p{font-size:.88rem; margin:0;}
+  .food-loc{display:inline-block; font-size:.65rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:2px 8px; border-radius:999px; margin-bottom:8px;}
+  .food-card.resort .food-loc{background:rgba(47,111,126,.1); color:var(--deep-ocean);}
+  .food-card.nearby .food-loc{background:rgba(120,155,122,.12); color:var(--palm-green);}
+  .food-card.haleiwa .food-loc{background:rgba(227,163,111,.15); color:#b87630;}
+  .food-card.pupukea .food-loc{background:rgba(155,139,110,.12); color:#7a6b4f;}
+  /* food section intro legend */
+  .food-legend{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:22px;}
+  .legend-item{display:flex; align-items:center; gap:6px; font-size:.76rem; font-weight:600; color:var(--ink-soft);}
+  .legend-dot{width:10px; height:10px; border-radius:50%; flex-shrink:0;}
 
   /* dog walks */
   .walk-list{list-style:none; margin:0 0 8px; padding:0;}
@@ -242,7 +258,116 @@
   .partner-card h4{font-size:.88rem; margin:0 0 4px; font-family:'Fraunces',serif; font-weight:600;}
   .partner-card p{font-size:.78rem; margin:4px 0 0;}
 
-  /* book direct */
+  /* ---------- UNIT CARDS ---------- */
+  .amenity-row{
+    display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:32px;
+  }
+  .amenity-item{
+    background:#fff; border-radius:var(--radius); border:1px solid rgba(47,111,126,.1);
+    padding:13px 16px; display:flex; align-items:center; gap:10px;
+    font-weight:600; font-size:.86rem; color:var(--ink);
+  }
+  .amenity-icon{font-size:1.2rem; flex-shrink:0;}
+  .unit-card{
+    background:#fff; border-radius:var(--radius); border:1px solid rgba(47,111,126,.12);
+    overflow:hidden; margin-bottom:28px;
+  }
+  .unit-header{
+    padding:18px 20px 14px;
+    border-bottom:1px solid rgba(47,111,126,.08);
+  }
+  .unit-name{
+    font-family:'Fraunces',serif; font-weight:700; font-size:1.3rem;
+    color:var(--deep-ocean); margin-bottom:3px;
+  }
+  .unit-location{font-size:.76rem; color:var(--ink-soft); font-weight:500;}
+
+  /* ---------- PHOTO GALLERY: hero + thumbnail strip ---------- */
+  .unit-hero{
+    position:relative; width:100%; height:260px; overflow:hidden; cursor:pointer;
+    background:linear-gradient(135deg, var(--sea-glass), var(--deep-ocean));
+  }
+  .unit-hero-slide{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    opacity:0; transition:opacity .35s ease; font-size:.8rem; color:rgba(255,255,255,.75);
+    font-weight:600; text-align:center; padding:20px;
+  }
+  .unit-hero-slide.active{opacity:1;}
+  .unit-hero-slide img{width:100%; height:100%; object-fit:cover; display:block;}
+  .unit-hero-tap{
+    position:absolute; bottom:12px; right:12px; background:rgba(31,77,88,.72);
+    color:#fff; border-radius:999px; padding:6px 14px; font-size:.7rem; font-weight:600;
+    display:flex; align-items:center; gap:5px; pointer-events:none; backdrop-filter:blur(3px);
+  }
+  .unit-thumbs{
+    display:flex; gap:8px; overflow-x:auto; padding:12px 20px 20px; scrollbar-width:none;
+  }
+  .unit-thumbs::-webkit-scrollbar{display:none;}
+  .unit-thumb{
+    flex:0 0 auto; width:64px; height:64px; border-radius:10px; overflow:hidden;
+    cursor:pointer; border:2.5px solid transparent; opacity:.6; transition:opacity .2s, border-color .2s;
+    background:linear-gradient(135deg, var(--sea-glass), var(--deep-ocean));
+    display:flex; align-items:center; justify-content:center;
+    font-size:.58rem; color:rgba(255,255,255,.85); font-weight:700; text-align:center;
+  }
+  .unit-thumb.active{opacity:1; border-color:var(--sunset);}
+  .unit-thumb img{width:100%; height:100%; object-fit:cover; display:block;}
+
+  .unit-features{
+    display:flex; gap:0; flex-wrap:wrap;
+    border-bottom:1px solid rgba(47,111,126,.08);
+  }
+  .unit-feature{
+    display:flex; align-items:center; gap:7px;
+    padding:10px 16px; font-size:.82rem; font-weight:600; color:var(--ink-soft);
+    border-right:1px solid rgba(47,111,126,.08);
+    flex:1 1 45%;
+  }
+  .unit-feature:last-child{border-right:none;}
+  .unit-icon{font-size:1rem;}
+  .unit-desc{padding:14px 20px 18px; margin:0; font-size:.88rem;}
+  .unit-book-row{padding:0 20px 20px;}
+  .btn-airbnb{
+    display:inline-flex; align-items:center; gap:8px; width:100%;
+    justify-content:center; padding:13px 22px; border-radius:999px;
+    font-weight:600; font-size:.9rem; text-decoration:none;
+    background:#FF385C; color:#fff;
+  }
+
+  /* fullscreen lightbox, shared across both units */
+  .lightbox{
+    position:fixed; inset:0; background:rgba(18,28,30,.95); z-index:300;
+    display:none; align-items:center; justify-content:center; padding:24px;
+  }
+  .lightbox.open{display:flex;}
+  .lightbox-frame{
+    position:relative; width:100%; max-width:460px; height:70vh;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .lightbox-frame img{max-width:100%; max-height:100%; border-radius:12px; object-fit:contain;}
+  .lightbox-placeholder{
+    width:100%; height:100%; border-radius:12px; display:flex; align-items:center; justify-content:center;
+    color:#fff; font-weight:600; font-size:.9rem; text-align:center; padding:20px;
+    background:linear-gradient(135deg, var(--sea-glass), var(--deep-ocean));
+  }
+  .lightbox-close{
+    position:absolute; top:22px; right:22px; width:40px; height:40px; border-radius:50%;
+    background:rgba(255,255,255,.14); color:#fff; border:none; font-size:1.2rem; cursor:pointer; z-index:2;
+  }
+  .lightbox-nav{
+    position:absolute; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%;
+    background:rgba(255,255,255,.14); color:#fff; border:none; font-size:1.2rem; cursor:pointer; z-index:2;
+  }
+  .lightbox-prev{left:6px;}
+  .lightbox-next{right:6px;}
+  .lightbox-counter{
+    position:absolute; bottom:-34px; left:50%; transform:translateX(-50%);
+    color:rgba(255,255,255,.7); font-size:.78rem; font-weight:600;
+  }
+
+  @media (min-width:500px){
+    .unit-hero{height:340px;}
+  }
   .book-direct{background:linear-gradient(160deg, var(--deep-ocean) 0%, var(--deep-ocean-dark) 100%); color:#fff; text-align:center;}
   .book-direct h2{color:#fff;}
   .qr-box{
@@ -279,12 +404,11 @@
   </div>
   <nav class="drop" id="dropNav">
     <ul>
-      <li><a href="#itineraries">Itineraries</a></li>
       <li><a href="#turtle-bay">Things To Do</a></li>
-      <li><a href="#top10">Sunny's Top 10</a></li>
-      <li><a href="#food">Food &amp; Drink</a></li>
-      <li><a href="#dogguide">Dog Lover Guide</a></li>
-      <li><a href="#favorites">Sunny's Favorites</a></li>
+      <li><a href="#itineraries">Itineraries</a></li>
+      <li><a href="#sunnypicks">Sunny Girl's Picks</a></li>
+      <li><a href="#partners">Local Partners</a></li>
+      <li><a href="#our-units">Our Units</a></li>
       <li><a href="#book-direct">Book Direct</a></li>
     </ul>
   </nav>
@@ -299,19 +423,20 @@
     <h1>Welcome to the North Shore.</h1>
     <p class="lead">Curated adventures, local favorites, and island know-how — put together by Sunny Heaven &amp; Aloha Valentina, your home base at Turtle Bay.</p>
     <div class="cta-row">
-      <a href="#itineraries" class="btn btn-sunset">What should we do today? →</a>
-      <a href="#turtle-bay" class="btn btn-ghost">Things to do</a>
+      <a href="#turtle-bay" class="btn btn-sunset">What should we do today? →</a>
+      <a href="#itineraries" class="btn btn-ghost">Plan a full day</a>
     </div>
   </div>
 </section>
 
 <div class="chips">
-  <a class="chip" href="#itineraries">🌅 Itineraries</a>
   <a class="chip" href="#turtle-bay">🏝️ Things To Do</a>
-  <a class="chip" href="#top10">🔝 Top 10</a>
   <a class="chip" href="#food">🍤 Food &amp; Drink</a>
-  <a class="chip" href="#dogguide">🐾 Dog Guide</a>
-  <a class="chip" href="#favorites">⭐ Favorites</a>
+  <a class="chip" href="#top10">🔝 Top 10</a>
+  <a class="chip" href="#itineraries">🌅 Itineraries</a>
+  <a class="chip" href="#sunnypicks">🐾 Sunny Girl's Picks</a>
+  <a class="chip" href="#partners">📷 Local Partners</a>
+  <a class="chip" href="#our-units">🏠 Our Units</a>
   <a class="chip" href="#book-direct">📩 Book Direct</a>
 </div>
 
@@ -319,97 +444,91 @@
 
 <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#E9DFC9"/></svg>
 
-<!-- ---------- ITINERARIES ---------- -->
-<section class="bg-sand" id="itineraries">
+<!-- ============================================================
+     SECTION 2 — THINGS TO DO (unified hub)
+     ============================================================ -->
+<section class="bg-sand" id="turtle-bay">
   <div class="wrap">
-    <span class="eyebrow">Plan your day</span>
-    <h2>One-Day Itineraries</h2>
-    <p class="section-sub">Three ways to spend a day on O'ahu, depending on how far you want to roam from Turtle Bay.</p>
-
-    <details class="card" open>
-      <summary>
-        <div>
-          <div class="summary-title">The Perfect One-Day North Shore Adventure</div>
-          <div class="meta-tags"><span class="tag">Full day</span><span class="tag">Customize at 1:30pm</span></div>
-        </div>
-        <span class="chevron">+</span>
-      </summary>
-      <div class="card-body">
-        <ul class="timeline">
-          <li><span class="t-label">7:00 AM</span>Sunrise walk along the Turtle Bay coastline. Grab coffee at Ho'olana Cafe at Turtle Bay.</li>
-          <li><span class="t-label">8:00 AM</span>Breakfast at Sunrise Shack or Ted's Bakery.</li>
-          <li><span class="t-label">9:30 AM</span>Explore <a href="https://www.waimeavalley.net/" target="_blank" rel="noopener">Waimea Valley</a> — waterfall and botanical gardens.</li>
-          <li><span class="t-label">11:00 AM</span>Relax on the sand at Waimea Bay.</li>
-          <li><span class="t-label">12:00 PM</span>Lunch from a North Shore shrimp truck — we like Camaron Shrimp Wagon.</li>
-          <li><span class="t-label">1:30 PM</span>Choose your adventure: snorkel at Shark's Cove, a <a href="https://www.jobsurfexperience.com/north-shore/turtle-bay-resort/" target="_blank" rel="noopener">surf lesson</a>, <a href="https://www.turtlebayresort.com/things-to-do/activities/horseback-riding" target="_blank" rel="noopener">horseback riding</a>, or <a href="https://www.climbworks.com/keana-farms/" target="_blank" rel="noopener">ziplining</a>. Our favorite in summer is snorkeling at Shark's Cove.</li>
-          <li><span class="t-label">4:00 PM</span>Browse Haleiwa Town's surf shops and boutiques, grab shave ice. On the drive back, stop at Laniakea Beach for the sleeping sea turtles and Ehukai Beach Park for the famous Pipeline surf break.</li>
-          <li><span class="t-label">Sunset</span>A drink by the pool back at Turtle Bay.</li>
-          <li><span class="t-label">Dinner</span><a href="https://www.turtlebayresort.com/dining/roys-beach-house" target="_blank" rel="noopener">Roy's Beach House</a>, right here at the resort.</li>
-        </ul>
-        <figure class="inline-figure">
-          <img src="turtle-underwater.jpg" alt="Sea turtle at Shark's Cove">
-          <figcaption>Green sea turtles are common at Shark's Cove and Laniakea — keep a respectful distance and no touching.</figcaption>
-        </figure>
-      </div>
-    </details>
-
-    <details class="card">
-      <summary>
-        <div>
-          <div class="summary-title">East Side Adventure</div>
-          <div class="meta-tags"><span class="tag">~3 hrs total drive time</span><span class="tag">Depart 8:00 AM</span></div>
-        </div>
-        <span class="chevron">+</span>
-      </summary>
-      <div class="card-body">
-        <ul class="timeline">
-          <li><span class="t-label">8:00 AM</span>Depart Turtle Bay Resort. Grab a coffee and enjoy the scenic drive down O'ahu's Windward Coast.</li>
-          <li><span class="t-label">8:45 AM</span>The Crouching Lion — breakfast or coffee with dramatic mountain and ocean views. (30–45 min)</li>
-          <li><span class="t-label">9:45 AM</span>Kualoa Regional Park — a short beach walk with one of O'ahu's most iconic views, Mokoli'i (Chinaman's Hat). (20–30 min)</li>
-          <li><span class="t-label">10:30 AM</span>Byodo-In Temple — explore the grounds, ring the sacred bell, feed the koi, and enjoy the gardens. (60–90 min)</li>
-          <li><span class="t-label">12:15 PM</span>Ho'omaluhia Botanical Garden — walking paths and mountain views through one of Hawaii's most beautiful gardens. (60–90 min)</li>
-          <li><span class="t-label">2:00 PM</span>Lunch in Kailua at one of the town's local restaurants.</li>
-          <li><span class="t-label">3:00 PM</span>Kailua Beach Park — swim, walk the shore, or just relax on one of Hawaii's most beautiful beaches. (1–2 hrs)</li>
-          <li><span class="t-label">5:30 PM</span>Leave Kailua and enjoy the scenic drive back along the Windward Coast.</li>
-          <li><span class="t-label">~7:00 PM</span>Arrive back at Turtle Bay. Finish the day with dinner at the resort or sunset from Kuilima Point.</li>
-        </ul>
-        <p class="note-text">Insider tips: bring swimsuits and towels for Kailua Beach, wear comfortable shoes for the temple and garden, pack water, sunscreen, and a camera, and start early to keep a relaxed pace and avoid traffic.</p>
-      </div>
-    </details>
-
-    <details class="card">
-      <summary>
-        <div>
-          <div class="summary-title">Waikiki &amp; Honolulu Day</div>
-          <div class="meta-tags"><span class="tag">~1 hr drive</span><span class="tag">Early start recommended</span></div>
-        </div>
-        <span class="chevron">+</span>
-      </summary>
-      <div class="card-body">
-        <ul class="timeline">
-          <li><span class="t-label">Morning</span>Hike Diamond Head before it gets hot, then a quick visit to 'Iolani Palace.</li>
-          <li><span class="t-label">Afternoon</span>Browse Kaka'ako's murals and shops, then Waikiki Beach for the classic O'ahu postcard moment.</li>
-          <li><span class="t-label">Evening</span>Sunset catamaran sail, then dinner in Waikiki before the drive back north.</li>
-        </ul>
-        <p class="note-text">Prefer an ocean-focused day instead? Swap in Hanauma Bay for snorkeling, Sea Life Park, and the Makapu'u Lighthouse trail.</p>
-      </div>
-    </details>
-  </div>
-</section>
-
-<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" style="transform:rotate(180deg);"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#F6F4EF"/></svg>
-
-<!-- ---------- THINGS TO DO ---------- -->
-<section class="bg-foam" id="turtle-bay">
-  <div class="wrap">
-    <span class="eyebrow">On property and beyond</span>
+    <span class="eyebrow">Your complete guide</span>
     <h2>Things To Do</h2>
-    <p class="section-sub">From resort amenities to North Shore adventures a short drive away. Tap any tile for details.</p>
+    <p class="section-sub">Everything to see and do, from resort amenities to North Shore adventures. Tap any tile for details.</p>
     <div class="photo-pair">
       <img src="turtle-swimming-surface.jpg" alt="Sea turtle swimming near Turtle Bay">
       <img src="surfboards-fence.jpg" alt="Surfboards along the North Shore">
     </div>
 
+    <!-- TOP 10 -->
+    <div class="subhead" id="top10">Top 10 North Shore Activities</div>
+    <p class="subhead-note">Our favorite first-timer experiences, mixing resort favorites with North Shore adventures.</p>
+    <ul class="top10-list">
+      <li><span class="top10-num">01</span><p>Explore the waterfall and botanical gardens at <a href="https://www.waimeavalley.net/" target="_blank" rel="noopener">Waimea Valley</a><span class="top10-source">Beyond the resort</span></p></li>
+      <li><span class="top10-num">02</span><p>Watch sunset at Sunset Beach<span class="top10-source">Beyond the resort</span></p></li>
+      <li><span class="top10-num">03</span><p>Learn to surf with the <a href="https://www.jobsurfexperience.com/north-shore/turtle-bay-resort/" target="_blank" rel="noopener">Jamie O'Brien Surf Experience</a><span class="top10-source">At the resort</span></p></li>
+      <li><span class="top10-num">04</span><p>Ride horseback through the coast and ironwood forest with <a href="https://www.turtlebayresort.com/things-to-do/activities/horseback-riding" target="_blank" rel="noopener">The Stables at Turtle Bay</a><span class="top10-source">At the resort</span></p></li>
+      <li><span class="top10-num">05</span><p>Spend an afternoon exploring historic Haleiwa Town<span class="top10-source">Beyond the resort</span></p></li>
+      <li><span class="top10-num">06</span><p>Enjoy North Shore garlic shrimp from a local food truck — Big Wave Shrimp Truck and Giovanni's are two favorites<span class="top10-source">Beyond the resort</span></p></li>
+      <li><span class="top10-num">07</span><p>Snorkel at Shark's Cove (summer months only)<span class="top10-source">Beyond the resort</span></p></li>
+      <li><span class="top10-num">08</span><p>Fly through the trees at <a href="https://www.climbworks.com/keana-farms/" target="_blank" rel="noopener">CLIMB Works Keana Farms</a><span class="top10-source">Beyond the resort</span></p></li>
+      <li><span class="top10-num">09</span><p>Visit the sea turtles at Laniakea Beach<span class="top10-source">Beyond the resort</span></p></li>
+      <li><span class="top10-num">10</span><p>Begin your day with a sunrise walk along the coastal paths near Turtle Bay Resort<span class="top10-source">At the resort</span></p></li>
+    </ul>
+
+    <!-- FOOD & DRINK -->
+    <div class="subhead" id="food">Food &amp; Drink on the North Shore</div>
+    <p class="subhead-note">From beachfront bars to farm-to-table lunches and legendary food trucks — a short list, on purpose.</p>
+    <div class="food-legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--deep-ocean)"></div>At the resort</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--palm-green)"></div>Near Turtle Bay</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--sunset)"></div>Haleiwa Town</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#9B8B6E"></div>Pupukea area</div>
+    </div>
+    <div class="food-grid">
+
+      <div class="food-card resort">
+        <span class="food-loc">At the resort</span>
+        <h3>Sunset Pool Bar</h3>
+        <p>Right at the pool, with front-row views of the surf break and ocean beyond. Order a Mai Tai, grab some food, and watch surfers from one of the best seats on the North Shore. Open to non-resort guests — live music Thursday &amp; Sunday evenings. Open 10am–8pm, food service 11am–7pm. <a href="https://www.turtlebayresort.com/dining/sunset" target="_blank" rel="noopener">View menu</a>.</p>
+      </div>
+
+      <div class="food-card resort">
+        <span class="food-loc">At the resort</span>
+        <h3>Beach House by Roy Yamaguchi</h3>
+        <p>Right on the sand at Kuilima Cove — premium beachfront dining and custom cocktails with your toes practically in the water. Dog-friendly. Open 11:30am–2:30pm and 4:30pm–9pm. <a href="https://www.turtlebayresort.com/dining/roys-beach-house" target="_blank" rel="noopener">View the menu</a>.</p>
+      </div>
+
+      <div class="food-card nearby">
+        <span class="food-loc">Near Turtle Bay · Kahuku</span>
+        <h3>Kahuku Farms</h3>
+        <p>A true farm-to-table experience just minutes from the resort — winner of Newsweek's 2025 Best Farm-to-Table Restaurant in the US. Run by a fourth-generation farming family. Try the acai bowl (made with their own Hawaiian-grown acai), farm pizza, veggie panini, or smoothies. The wagon farm tour is a great add-on. Open Thu–Sun, 11am–4pm. <a href="https://kahukufarms.com/" target="_blank" rel="noopener">Plan your visit</a>.</p>
+      </div>
+
+      <div class="food-card nearby">
+        <span class="food-loc">Near Turtle Bay · Kahuku Sugar Mill</span>
+        <h3>Shrimp Trucks &amp; Food Trucks at Kahuku</h3>
+        <p>The Kahuku Sugar Mill is a lively cluster of food trucks, restaurants, and shops on Kamehameha Highway. <strong>Seven Brothers Burgers</strong> is the anchor — known for massive island-style burgers, garlic shrimp, and coconut macadamia shrimp. Also here: <strong>Giovanni's</strong> and <strong>Fumi's</strong> for the classic garlic shrimp, <strong>Ry's Poke Shack</strong> for fresh ahi, <strong>Surf N Salsa</strong> for Mexican, and Ono Yo for frozen yogurt. Plan for a wander and pick what looks good.</p>
+      </div>
+
+      <div class="food-card pupukea">
+        <span class="food-loc">Pupukea · Near Shark's Cove</span>
+        <h3>Pupukea Food Trucks</h3>
+        <p><strong>Pupukea Grill</strong> — right across from Shark's Cove — is a North Shore institution. Fresh poke bowls, sushi, kalua pork bowls, wraps, smoothie bowls, and vegan options. The spicy tuna poke bowl is legendary. <strong>Da Bald Guy</strong> nearby does outstanding plate lunches — kalbi beef and chopped rib eye are the move. Open Tue–Sun. <a href="https://www.pupukeagrill.com/" target="_blank" rel="noopener">Pupukea Grill menu</a>.</p>
+      </div>
+
+      <div class="food-card haleiwa">
+        <span class="food-loc">Haleiwa Town</span>
+        <h3>Haleiwa Eats</h3>
+        <p>The historic surf town is packed with great spots. <strong>Uncle Bo's Pupu Bar &amp; Grill</strong> for local-style seafood and pupus. <strong>Waialua Bakery &amp; Juice Bar</strong> for sandwiches, house-baked breads, and smoothies. <strong>Matsumoto Shave Ice</strong> for the classic Hawaiian treat. <strong>Surf N Sea</strong> for browsing while you snack — leashed dogs welcome.</p>
+      </div>
+
+      <div class="food-card nearby">
+        <span class="food-loc">Scenic drive south · Ka'a'awa</span>
+        <h3>The Crouching Lion</h3>
+        <p>About 30 minutes south down the Windward Coast for modern Hawaiian cuisine, ocean views, and a cold drink. Dog-friendly. Open 11:00am–9pm daily. <a href="https://thecrouchinglion.com/" target="_blank" rel="noopener">Learn more</a>.</p>
+      </div>
+
+    </div>
+
+    <!-- AT THE RESORT -->
     <div class="subhead">At The Resort</div>
     <div class="tile-grid">
 
@@ -439,6 +558,7 @@
 
     </div>
 
+    <!-- BEYOND THE RESORT -->
     <div class="subhead">Beyond The Resort</div>
     <div class="tile-grid">
 
@@ -460,104 +580,117 @@
       <details class="tile"><summary><span class="tile-icon">🌿</span><span class="tile-name">Waimea Valley</span></summary>
         <div class="tile-body"><p>Waterfall, botanical gardens, and Hawaiian cultural sites along an easy paved path. <a href="https://www.waimeavalley.net/" target="_blank" rel="noopener">Plan your visit</a>.</p></div></details>
 
+      <details class="tile"><summary><span class="tile-icon">🐢</span><span class="tile-name">Shark's Cove &amp; Laniakea</span></summary>
+        <div class="tile-body"><p>Snorkel the tide pools at Shark's Cove (summer months) and visit the sleeping sea turtles at Laniakea Beach.</p></div></details>
+
       <details class="tile"><summary><span class="tile-icon">🛍️</span><span class="tile-name">Haleiwa Town</span></summary>
         <div class="tile-body"><p>The historic surf town, a 20-minute drive down the road — boutiques, surf shops, and local restaurants.</p></div></details>
 
     </div>
-  </div>
-</section>
 
-<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#E9DFC9"/></svg>
-
-<!-- ---------- TOP 10 ---------- -->
-<section class="bg-sand" id="top10">
-  <div class="wrap">
-    <span class="eyebrow">Sunny's picks</span>
-    <h2>Sunny's Top 10</h2>
-    <p class="section-sub">Our favorite first-timer experiences on the North Shore.</p>
-    <ul class="top10-list">
-      <li><span class="top10-num">01</span><p>Explore the waterfall and botanical gardens at <a href="https://www.waimeavalley.net/" target="_blank" rel="noopener">Waimea Valley</a></p></li>
-      <li><span class="top10-num">02</span><p>Watch sunset at Sunset Beach</p></li>
-      <li><span class="top10-num">03</span><p>Spend an afternoon exploring historic Haleiwa Town</p></li>
-      <li><span class="top10-num">04</span><p>Enjoy North Shore garlic shrimp from a local food truck</p></li>
-      <li><span class="top10-num">05</span><p>Snorkel at Shark's Cove (summer months only)</p></li>
-      <li><span class="top10-num">06</span><p>Learn to surf with the <a href="https://www.jobsurfexperience.com/north-shore/turtle-bay-resort/" target="_blank" rel="noopener">Jamie O'Brien Surf Experience</a></p></li>
-      <li><span class="top10-num">07</span><p>Ride horseback through the coast and ironwood forest with <a href="https://www.turtlebayresort.com/things-to-do/activities/horseback-riding" target="_blank" rel="noopener">The Stables at Turtle Bay</a></p></li>
-      <li><span class="top10-num">08</span><p>Fly through the trees at <a href="https://www.climbworks.com/keana-farms/" target="_blank" rel="noopener">CLIMB Works Keana Farms</a></p></li>
-      <li><span class="top10-num">09</span><p>Visit the sea turtles at Laniakea Beach</p></li>
-      <li><span class="top10-num">10</span><p>Begin your day with a sunrise walk along the coastal paths near Turtle Bay Resort</p></li>
-    </ul>
   </div>
 </section>
 
 <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" style="transform:rotate(180deg);"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#F6F4EF"/></svg>
 
-<!-- ---------- FOOD & DRINK ---------- -->
-<section class="bg-foam" id="food">
+<!-- ============================================================
+     SECTION 3 — ITINERARIES
+     ============================================================ -->
+<section class="bg-foam" id="itineraries">
   <div class="wrap">
-    <span class="eyebrow">Eat like a local</span>
-    <h2>Food &amp; Drink</h2>
-    <p class="section-sub">A short list, on purpose. These are the spots worth the detour.</p>
-    <div class="food-grid">
-      <div class="food-card"><h3>Roy's Beach House</h3><p>Premium beachfront dining and custom cocktails right on the sand at Kuilima Cove. <a href="https://www.turtlebayresort.com/dining/roys-beach-house" target="_blank" rel="noopener">View the menu</a>.</p></div>
-      <div class="food-card"><h3>The Crouching Lion</h3><p>A scenic drive south in Ka'a'awa for modern Hawaiian cuisine and ocean views. <a href="https://thecrouchinglion.com/" target="_blank" rel="noopener">Learn more</a>.</p></div>
-      <div class="food-card"><h3>Resort Dining &amp; Shopping</h3><p>Six dining concepts plus local gift shops and surf boutiques around the lobby and pool areas.</p></div>
-      <div class="food-card"><h3>North Shore Shrimp Trucks</h3><p>Camaron Shrimp Wagon and others along the highway — order the garlic shrimp plate.</p></div>
-      <div class="food-card"><h3>Haleiwa Town</h3><p>Shave ice, açai bowls, and local art galleries along Kamehameha Highway.</p></div>
-    </div>
+    <span class="eyebrow">Plan your day</span>
+    <h2>One-Day Itineraries</h2>
+    <p class="section-sub">Three ways to spend a day on O'ahu, depending on how far you want to roam from Turtle Bay.</p>
+
+    <details class="card" open>
+      <summary>
+        <div>
+          <div class="summary-title">The Perfect One-Day North Shore Adventure</div>
+          <div class="meta-tags"><span class="tag">Full day</span><span class="tag">Customize at 1:30pm</span></div>
+        </div>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="card-body">
+        <ul class="timeline">
+          <li><span class="t-label">7:00 AM</span>Sunrise walk along the Turtle Bay coastline. Grab coffee at Ho'olana Cafe at Turtle Bay.</li>
+          <li><span class="t-label">8:00 AM</span>Breakfast at Sunrise Shack or Ted's Bakery.</li>
+          <li><span class="t-label">9:30 AM</span>Explore <a href="https://www.waimeavalley.net/" target="_blank" rel="noopener">Waimea Valley</a> — waterfall and botanical gardens.</li>
+          <li><span class="t-label">11:00 AM</span>Relax on the sand at Waimea Bay.</li>
+          <li><span class="t-label">12:00 PM</span>Lunch from a food truck at Shark's Cove or in Haleiwa — shrimp trucks like Giovanni's, or poke trucks like Pupukea Grill, are both great options.</li>
+          <li><span class="t-label">1:30 PM</span>Choose your adventure: snorkel at Shark's Cove, a <a href="https://www.jobsurfexperience.com/north-shore/turtle-bay-resort/" target="_blank" rel="noopener">surf lesson</a>, <a href="https://www.turtlebayresort.com/things-to-do/activities/horseback-riding" target="_blank" rel="noopener">horseback riding</a>, or <a href="https://www.climbworks.com/keana-farms/" target="_blank" rel="noopener">ziplining</a>. Our favorite in summer is snorkeling at Shark's Cove.</li>
+          <li><span class="t-label">4:00 PM</span>Browse Haleiwa Town's surf shops and boutiques, grab shave ice. On the drive back, stop at Laniakea Beach for the sleeping sea turtles and Ehukai Beach Park for the famous Pipeline surf break.</li>
+          <li><span class="t-label">Sunset</span>A drink by the pool back at Turtle Bay — the full bar there has great views of the ocean and surfers, plus food options if you're hungry.</li>
+          <li><span class="t-label">Dinner</span><a href="https://www.turtlebayresort.com/dining/roys-beach-house" target="_blank" rel="noopener">Beach House by Roy Yamaguchi</a>, right on the beach at the resort and dog-friendly.</li>
+        </ul>
+        <figure class="inline-figure">
+          <img src="turtle-underwater.jpg" alt="Sea turtle at Shark's Cove">
+          <figcaption>Green sea turtles are common at Shark's Cove and Laniakea — keep a respectful distance and no touching.</figcaption>
+        </figure>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>
+        <div>
+          <div class="summary-title">East Side Adventure</div>
+          <div class="meta-tags"><span class="tag">~3 hrs total drive time</span><span class="tag">Depart 8:00 AM</span></div>
+        </div>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="card-body">
+        <ul class="timeline">
+          <li><span class="t-label">8:00 AM</span>Depart Turtle Bay Resort. Grab a coffee and enjoy the scenic drive down O'ahu's Windward Coast.</li>
+          <li><span class="t-label">8:45 AM</span>The Crouching Lion — breakfast or coffee with dramatic mountain and ocean views. (30–45 min)</li>
+          <li><span class="t-label">9:45 AM</span>Kualoa Regional Park — a short beach walk with one of O'ahu's most iconic views, Mokoli'i (Chinaman's Hat). (20–30 min)</li>
+          <li><span class="t-label">10:30 AM</span>Byodo-In Temple — located within the Valley of the Temples memorial park, explore the grounds, ring the sacred bell, feed the koi, and enjoy the gardens. There is an entrance fee. (~45 min)</li>
+          <li><span class="t-label">11:15 AM</span>Ho'omaluhia Botanical Garden — walking paths and mountain views through one of Hawaii's most beautiful gardens. (~45 min)</li>
+          <li><span class="t-label">12:15 PM</span>Lunch in Kailua — Kalapawai Market, Maui Brewing Co., and Buzz's Original Steak House are all great options.</li>
+          <li><span class="t-label">1:30 PM</span>Kailua Beach Park — swim, walk the shore, or just relax on one of Hawaii's most beautiful beaches. (1–2 hrs)</li>
+          <li><span class="t-label">Optional</span>Sea Life Park — see turtles and dolphins up close. Open 10am–4pm daily except Tuesdays; tickets are recommended online in advance, and there is a parking fee.</li>
+          <li><span class="t-label">5:30 PM</span>Leave Kailua and enjoy the scenic drive back along the Windward Coast.</li>
+          <li><span class="t-label">~7:00 PM</span>Arrive back at Turtle Bay. Finish the day with dinner at the resort or sunset from Kuilima Point.</li>
+        </ul>
+        <p class="note-text">Insider tips: bring swimsuits and towels for Kailua Beach, wear comfortable shoes for the temple and garden, pack water, sunscreen, and a camera, and start early to keep a relaxed pace and avoid traffic. The drive back to Turtle Bay takes about 1.25 hours, whether you return through the island on the H1 or along the coast.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>
+        <div>
+          <div class="summary-title">Waikiki &amp; Honolulu Day</div>
+          <div class="meta-tags"><span class="tag">~1 hr drive</span><span class="tag">Early start recommended</span></div>
+        </div>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="card-body">
+        <ul class="timeline">
+          <li><span class="t-label">Morning</span>Hike Diamond Head before it gets hot, then a quick visit to 'Iolani Palace.</li>
+          <li><span class="t-label">Afternoon</span>Browse Kaka'ako's murals and shops, then Waikiki Beach for the classic O'ahu postcard moment.</li>
+          <li><span class="t-label">Evening</span>Sunset catamaran sail, then dinner in Waikiki before the drive back north.</li>
+        </ul>
+        <p class="note-text">Prefer an ocean-focused day instead? Swap in Hanauma Bay for snorkeling, Sea Life Park, and the Makapu'u Lighthouse trail.</p>
+      </div>
+    </details>
   </div>
 </section>
 
 <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#E9DFC9"/></svg>
 
-<!-- ---------- DOG LOVER GUIDE ---------- -->
-<section class="bg-sand" id="dogguide">
+<!-- ============================================================
+     SECTION 4 — SUNNY GIRL'S PICKS
+     ============================================================ -->
+<section class="bg-sand" id="sunnypicks">
   <div class="wrap">
     <span class="eyebrow">From the dog who lives here</span>
-    <h2>Sunny Valentina's Dog Lover Guide</h2>
-    <p class="section-sub">Inspired by Sunny Valentina — the friendly English Cream pup who loves riding shotgun with the windows down and greeting everyone like an old friend. Like Sunny, we hope you explore, slow down, discover new places, and make memories of your own.</p>
-
-    <div class="subhead">Dog-Friendly Walks</div>
-    <ul class="walk-list">
-      <li>Turtle Bay coastal paths</li>
-      <li>Pupukea Paumalu Forest Reserve trails (Ehukai Pillbox, Kaunala, and more)</li>
-      <li>Scenic beach pathways around the resort</li>
-    </ul>
-
-    <div class="subhead">Dog-Friendly Stops</div>
-    <div class="food-grid">
-      <div class="food-card"><h4>Uncle Bo's Pupu Bar &amp; Grill</h4><p>Local-style pupus and seafood, with dog-friendly outdoor seating in Haleiwa.</p></div>
-      <div class="food-card"><h4>The Beet Box Cafe</h4><p>Vegetarian and vegan breakfast, lunch, and fresh juices with pet-welcoming outdoor tables.</p></div>
-      <div class="food-card"><h4>Teddy's Bigger Burgers</h4><p>A quick-casual classic burger spot with outdoor tables for you and Fido.</p></div>
-      <div class="food-card"><h4>Matsumoto Shave Ice</h4><p>The historic shave ice stop with wide open-air bench seating.</p></div>
-      <div class="food-card"><h4>Waialua Bakery &amp; Juice Bar</h4><p>Fresh sandwiches, house-baked breads, and smoothies with cozy outdoor booths.</p></div>
-      <div class="food-card"><h4>Camaron Shrimp Wagon</h4><p>Garlic, coconut, or lemon butter shrimp at spacious dog-friendly picnic tables.</p></div>
-      <div class="food-card"><h4>Surf N Sea</h4><p>A historic boardwalk surf shop where leashed, well-behaved dogs are welcome to browse.</p></div>
-      <div class="food-card"><h4>Roy's Beach House &amp; The Crouching Lion</h4><p>Both also offer dog-friendly outdoor seating — call ahead to confirm.</p></div>
-    </div>
-    <p class="note-text">For a complete map, reviews, and current pet policies, see the <a href="https://www.bringfido.com/destination/city/haleiwa-hi-us/" target="_blank" rel="noopener" style="color:var(--deep-ocean); font-weight:600;">BringFido Haleiwa Dog Guide</a>.</p>
-
-    <div class="subhead">Sunny's Scenic Drive</div>
-    <div class="drive-card">
-      <div class="drive-route">Turtle Bay → The Crouching Lion → Kailua Beach → Haleiwa → Sunset Beach → Turtle Bay</div>
-      <p style="margin:0;">Ocean views, windows down, and plenty of photo stops along the way.</p>
-    </div>
-  </div>
-</section>
-
-<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" style="transform:rotate(180deg);"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#F6F4EF"/></svg>
-
-<!-- ---------- SUNNY'S FAVORITES ---------- -->
-<section class="bg-foam" id="favorites">
-  <div class="wrap">
-    <span class="eyebrow">Personal picks</span>
-    <h2>Sunny's Favorites</h2>
-    <p class="section-sub">Personal picks, not a tourist list.</p>
+    <h2>Sunny Girl's Picks</h2>
+    <p class="section-sub">Inspired by Sunny Girl — the friendly English Cream pup who loves riding shotgun with the windows down and greeting everyone like an old friend. Like Sunny Girl, we hope you explore, slow down, discover new places, and make memories of your own.</p>
     <img class="fav-banner" src="aloha-surfboards.jpg" alt="Colorful Aloha surfboard sign on the North Shore">
+
+    <div class="subhead">Sunny Girl's Favorites</div>
     <ul class="fav-list">
       <li>
         <svg class="paw" viewBox="0 0 24 24" fill="#789B7A"><circle cx="12" cy="15" r="5"/><circle cx="5" cy="9" r="2.6"/><circle cx="19" cy="9" r="2.6"/><circle cx="8.5" cy="5" r="2.4"/><circle cx="15.5" cy="5" r="2.4"/></svg>
-        <div><span class="fav-label">Coffee</span><p>[ Add Sunny's go-to coffee stop ]</p></div>
+        <div><span class="fav-label">Coffee</span><p>[ Add Sunny Girl's go-to coffee stop ]</p></div>
       </li>
       <li>
         <svg class="paw" viewBox="0 0 24 24" fill="#789B7A"><circle cx="12" cy="15" r="5"/><circle cx="5" cy="9" r="2.6"/><circle cx="19" cy="9" r="2.6"/><circle cx="8.5" cy="5" r="2.4"/><circle cx="15.5" cy="5" r="2.4"/></svg>
@@ -572,17 +705,48 @@
         <div><span class="fav-label">Photography Spot</span><p>The ironwood trees along Kawela Bay, especially early morning.</p></div>
       </li>
     </ul>
+
+    <div class="subhead">Sunny Girl's Scenic Drive</div>
+    <div class="drive-card">
+      <div class="drive-route">Turtle Bay → The Crouching Lion → Kailua Beach → Haleiwa → Sunset Beach → Turtle Bay</div>
+      <p style="margin:0;">Ocean views, windows down, and plenty of photo stops along the way.</p>
+    </div>
+
+    <div class="subhead">Sunny Girl's Dog-Friendly Guide</div>
+    <p class="subhead-note">Walks and stops where dogs are welcome, including right here at Turtle Bay.</p>
+    <ul class="walk-list">
+      <li>Turtle Bay coastal paths</li>
+      <li>Pupukea Paumalu Forest Reserve trails (Ehukai Pillbox, Kaunala, and more)</li>
+      <li>Scenic beach pathways around the resort</li>
+    </ul>
+    <div class="food-grid">
+      <div class="food-card"><h4>Turtle Bay Resort</h4><p>Dog-friendly outdoor pathways and patio seating around the property.</p></div>
+      <div class="food-card"><h4>Beach House by Roy Yamaguchi</h4><p>Right on the beach at Kuilima Cove — call ahead to confirm.</p></div>
+      <div class="food-card"><h4>The Crouching Lion</h4><p>Outdoor seating with ocean views — call ahead to confirm.</p></div>
+      <div class="food-card"><h4>Uncle Bo's Pupu Bar &amp; Grill</h4><p>Local-style pupus and seafood, with dog-friendly outdoor seating in Haleiwa.</p></div>
+      <div class="food-card"><h4>Teddy's Bigger Burgers</h4><p>A quick-casual classic burger spot with outdoor tables for you and your pup.</p></div>
+      <div class="food-card"><h4>Matsumoto Shave Ice</h4><p>The historic shave ice stop with wide open-air bench seating.</p></div>
+      <div class="food-card"><h4>Waialua Bakery &amp; Juice Bar</h4><p>Fresh sandwiches, house-baked breads, and smoothies with cozy outdoor booths.</p></div>
+      <div class="food-card"><h4>Surf N Sea</h4><p>A historic boardwalk surf shop where leashed, well-behaved dogs are welcome to browse.</p></div>
+    </div>
+    <p class="note-text">For a complete map, reviews, and current pet policies, see the <a href="https://www.bringfido.com/destination/city/haleiwa-hi-us/" target="_blank" rel="noopener" style="color:var(--deep-ocean); font-weight:600;">BringFido Haleiwa Dog Guide</a>.</p>
   </div>
 </section>
 
-<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#E9DFC9"/></svg>
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" style="transform:rotate(180deg);"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#F6F4EF"/></svg>
 
-<!-- ---------- LOCAL PARTNERS ---------- -->
-<section class="bg-sand">
+<!-- ============================================================
+     SECTION 5 — LOCAL PARTNERS / CAPTURE YOUR MEMORIES
+     ============================================================ -->
+<section class="bg-foam" id="partners">
   <div class="wrap">
     <span class="eyebrow">Need a hand?</span>
     <h2>Capture Your North Shore Memories</h2>
-    <p class="section-sub">Want to make your stay even more memorable? We're happy to connect guests with trusted local partners for sunset photography sessions, family portraits, surprise proposals, couples photography, beach picnics, and other special occasions. Ask us for recommendations and availability.</p>
+    <p class="section-sub">Want to make your stay even more memorable? We're happy to connect guests with trusted local partners for sunset photography, family portraits, surprise proposals, couples photography, beach picnics, and other special occasions. Ask us for recommendations and availability.</p>
+    <div class="photo-pair">
+      <img src="waterfall-couple-photo.jpg" alt="Couple photographed at a North Shore waterfall">
+      <img src="sunset-couple-photo.jpg" alt="Couple photographed at sunset on the North Shore">
+    </div>
     <div class="partner-grid">
       <div class="partner-card"><span class="tile-icon">📷</span><h4>Photography Sessions</h4><p>[ Add contact ]</p></div>
       <div class="partner-card"><span class="tile-icon">💍</span><h4>Proposals &amp; Couples</h4><p>[ Add contact ]</p></div>
@@ -594,11 +758,104 @@
   </div>
 </section>
 
+<!-- ============================================================
+     SECTION 6 — OUR UNITS
+     ============================================================ -->
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#E9DFC9"/></svg>
+
+<section class="bg-sand" id="our-units">
+  <div class="wrap">
+    <span class="eyebrow">Your home base at Turtle Bay</span>
+    <h2>Sunny Heaven &amp; Aloha Valentina</h2>
+    <p class="section-sub">Two vacation condos at the Kuilima Condo Association, right on the grounds of Turtle Bay Resort on Oʻahu's North Shore.</p>
+
+    <!-- UNIT 1: SUNNY HEAVEN -->
+    <div class="unit-card">
+      <div class="unit-header">
+        <div class="unit-name">Sunny Heaven</div>
+        <div class="unit-location">Kuilima Condo Association · Turtle Bay Resort</div>
+      </div>
+      <!-- Photo gallery: to add real photos, replace each placeholder div with
+           <img src="filename.jpg" alt="..."> inside .unit-hero-slide and .unit-thumb -->
+      <div class="unit-hero" data-gallery="sh" onclick="openLightbox('sh')">
+        <div class="unit-hero-slide active">[ Sunny Heaven — Photo 1 ]</div>
+        <div class="unit-hero-slide">[ Sunny Heaven — Photo 2 ]</div>
+        <div class="unit-hero-slide">[ Sunny Heaven — Photo 3 ]</div>
+        <div class="unit-hero-slide">[ Sunny Heaven — Photo 4 ]</div>
+        <div class="unit-hero-slide">[ Sunny Heaven — Photo 5 ]</div>
+        <div class="unit-hero-tap">⤢ Tap to enlarge</div>
+      </div>
+      <div class="unit-thumbs" data-gallery="sh">
+        <div class="unit-thumb active" onclick="event.stopPropagation(); showSlide('sh',0)">1</div>
+        <div class="unit-thumb" onclick="event.stopPropagation(); showSlide('sh',1)">2</div>
+        <div class="unit-thumb" onclick="event.stopPropagation(); showSlide('sh',2)">3</div>
+        <div class="unit-thumb" onclick="event.stopPropagation(); showSlide('sh',3)">4</div>
+        <div class="unit-thumb" onclick="event.stopPropagation(); showSlide('sh',4)">5</div>
+      </div>
+      <div class="unit-features">
+        <div class="unit-feature"><span class="unit-icon">🅿️</span><span>Reserved parking</span></div>
+        <div class="unit-feature"><span class="unit-icon">🏊</span><span>Community pool access</span></div>
+        <div class="unit-feature"><span class="unit-icon">🍳</span><span>Full kitchen</span></div>
+        <div class="unit-feature"><span class="unit-icon">🌊</span><span>Steps from the ocean</span></div>
+      </div>
+      <p class="unit-desc">[ Add unit description — beds, baths, views, standout features ]</p>
+      <div class="unit-book-row">
+        <a class="btn-airbnb" href="https://airbnb.com/h/sunnylovesturtlebay3" target="_blank" rel="noopener">Book on Airbnb →</a>
+      </div>
+    </div>
+
+    <!-- UNIT 2: ALOHA VALENTINA -->
+    <div class="unit-card">
+      <div class="unit-header">
+        <div class="unit-name">Aloha Valentina</div>
+        <div class="unit-location">Kuilima Condo Association · Turtle Bay Resort</div>
+      </div>
+      <div class="unit-hero" data-gallery="av" onclick="openLightbox('av')">
+        <div class="unit-hero-slide active">[ Aloha Valentina — Photo 1 ]</div>
+        <div class="unit-hero-slide">[ Aloha Valentina — Photo 2 ]</div>
+        <div class="unit-hero-slide">[ Aloha Valentina — Photo 3 ]</div>
+        <div class="unit-hero-slide">[ Aloha Valentina — Photo 4 ]</div>
+        <div class="unit-hero-slide">[ Aloha Valentina — Photo 5 ]</div>
+        <div class="unit-hero-tap">⤢ Tap to enlarge</div>
+      </div>
+      <div class="unit-thumbs" data-gallery="av">
+        <div class="unit-thumb active" onclick="event.stopPropagation(); showSlide('av',0)">1</div>
+        <div class="unit-thumb" onclick="event.stopPropagation(); showSlide('av',1)">2</div>
+        <div class="unit-thumb" onclick="event.stopPropagation(); showSlide('av',2)">3</div>
+        <div class="unit-thumb" onclick="event.stopPropagation(); showSlide('av',3)">4</div>
+        <div class="unit-thumb" onclick="event.stopPropagation(); showSlide('av',4)">5</div>
+      </div>
+      <div class="unit-features">
+        <div class="unit-feature"><span class="unit-icon">🅿️</span><span>Reserved parking</span></div>
+        <div class="unit-feature"><span class="unit-icon">🏊</span><span>Community pool access</span></div>
+        <div class="unit-feature"><span class="unit-icon">🍳</span><span>Full kitchen</span></div>
+        <div class="unit-feature"><span class="unit-icon">🌊</span><span>Steps from the ocean</span></div>
+      </div>
+      <p class="unit-desc">[ Add unit description — beds, baths, views, standout features ]</p>
+      <div class="unit-book-row">
+        <a class="btn-airbnb" href="https://airbnb.com/h/sunnylovesturtlebay2" target="_blank" rel="noopener">Book on Airbnb →</a>
+      </div>
+    </div>
+
+    <!-- Fullscreen lightbox (shared by both units) -->
+    <div class="lightbox" id="lightbox" onclick="if(event.target===this) closeLightbox()">
+      <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+      <div class="lightbox-frame">
+        <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation(); navLightbox(-1)">‹</button>
+        <div class="lightbox-placeholder" id="lightbox-content">[ Photo ]</div>
+        <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation(); navLightbox(1)">›</button>
+        <div class="lightbox-counter" id="lightbox-counter">1 / 5</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- ---------- BOOK DIRECT ---------- -->
 <section class="book-direct" id="book-direct">
   <div class="wrap">
     <span class="eyebrow" style="color:var(--sunset);">Loved your stay?</span>
-    <h2>Book direct next time.</h2>
+    <h2>Coming Soon</h2>
     <p style="color:rgba(255,255,255,.8); max-width:420px; margin:10px auto 0;">Skip the platform fees — message us directly and we'll take care of the rest.</p>
     <div class="qr-box">[ Add booking / contact QR code ]</div>
     <div class="cta-row" style="justify-content:center;">
@@ -629,6 +886,58 @@
     menuBtn.classList.remove('open');
     menuBtn.setAttribute('aria-expanded', false);
   }));
+
+  // ---------- Unit photo gallery + lightbox ----------
+  const galleryState = { sh: 0, av: 0 };
+  const galleryCount = { sh: 5, av: 5 };
+  let activeGallery = null;
+
+  function showSlide(id, index) {
+    galleryState[id] = index;
+    const hero = document.querySelector(`.unit-hero[data-gallery="${id}"]`);
+    const thumbs = document.querySelector(`.unit-thumbs[data-gallery="${id}"]`);
+    hero.querySelectorAll('.unit-hero-slide').forEach((el, i) => el.classList.toggle('active', i === index));
+    thumbs.querySelectorAll('.unit-thumb').forEach((el, i) => el.classList.toggle('active', i === index));
+    if (activeGallery === id) updateLightboxContent(id, index);
+  }
+
+  function openLightbox(id) {
+    activeGallery = id;
+    const lb = document.getElementById('lightbox');
+    lb.classList.add('open');
+    updateLightboxContent(id, galleryState[id]);
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    activeGallery = null;
+  }
+
+  function navLightbox(dir) {
+    if (!activeGallery) return;
+    const count = galleryCount[activeGallery];
+    let next = (galleryState[activeGallery] + dir + count) % count;
+    showSlide(activeGallery, next);
+  }
+
+  function updateLightboxContent(id, index) {
+    const heroSlide = document.querySelectorAll(`.unit-hero[data-gallery="${id}"] .unit-hero-slide`)[index];
+    const content = document.getElementById('lightbox-content');
+    const img = heroSlide.querySelector('img');
+    if (img) {
+      content.outerHTML = `<img id="lightbox-content" src="${img.src}" alt="${img.alt}">`;
+    } else {
+      content.textContent = heroSlide.textContent;
+    }
+    document.getElementById('lightbox-counter').textContent = `${index + 1} / ${galleryCount[id]}`;
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') navLightbox(-1);
+    if (e.key === 'ArrowRight') navLightbox(1);
+  });
 </script>
 
 </body>
