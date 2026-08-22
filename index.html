@@ -157,6 +157,11 @@
   .banner-photo{width:100%; height:220px; object-fit:cover; display:block;}
   .photo-pair{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:28px; border-radius:var(--radius); overflow:hidden;}
   .photo-pair img{width:100%; height:150px; object-fit:cover; display:block;}
+  .single-photo{
+    max-width:480px; margin:0 auto 28px; border-radius:var(--radius);
+    overflow:hidden; box-shadow:0 8px 22px rgba(31,77,88,.12);
+  }
+  .single-photo img{width:100%; height:auto; display:block;}
   figure.inline-figure{margin:16px 0 8px;}
   figure.inline-figure img{width:100%; border-radius:10px; display:block; height:170px; object-fit:cover;}
   figure.inline-figure figcaption{font-size:.74rem; color:var(--ink-soft); margin-top:6px; font-style:italic;}
@@ -398,7 +403,6 @@
       <li><a href="#sunnypicks">Sunny Girl's Picks</a></li>
       <li><a href="#our-units">Our Units</a></li>
       <li><a href="#faq">FAQ</a></li>
-      <li><a href="#book-direct">Book Direct</a></li>
     </ul>
   </nav>
 </header>
@@ -440,10 +444,6 @@
     <span class="eyebrow">Your complete guide</span>
     <h2>Things To Do</h2>
     <p class="section-sub">Everything to see and do, from resort amenities to North Shore adventures. Tap any tile for details.</p>
-    <div class="photo-pair">
-      <img src="turtle-swimming-surface.jpg" alt="Sea turtle swimming near Turtle Bay">
-      <img src="surfboards-fence.jpg" alt="Surfboards along the North Shore">
-    </div>
 
     <!-- THINGS TO DO -->
     <p class="section-sub" style="margin-top:14px;">We've organized this by where it is — what's included right here at Kuilima, what's at Turtle Bay Resort (open to everyone, most things booked and paid separately), and what's worth the drive beyond the resort. Look for ⭐ on our favorites.</p>
@@ -465,6 +465,9 @@
 
       <details class="tile"><summary><span class="tile-icon">🌊</span><span class="tile-name">Resort Grounds &amp; Pool Bar <span class="fav-star">⭐</span></span></summary>
         <div class="tile-body"><p>Free to enjoy — walk the grounds or relax on the edge of Kuilima Cove. Grab a bite and a drink at the Sunset Pool Bar (see Food &amp; Drink for hours and menu).</p></div></details>
+
+      <details class="tile"><summary><span class="tile-icon">🍔</span><span class="tile-name">Lei Lei's Bar &amp; Grill</span></summary>
+        <div class="tile-body"><p>A casual, open-air spot at the golf clubhouse, run by the resort — the closest restaurant to Kuilima Estates West. Great for breakfast, lunch, or dinner (see Food &amp; Drink for hours).</p></div></details>
 
       <details class="tile"><summary><span class="tile-icon">🏝️</span><span class="tile-name">Kuilima Cove <span class="fav-star">⭐</span></span></summary>
         <div class="tile-body"><p>A protected, sandy cove right at the resort with calm water — great for swimming and relaxing. It's a public beach, free and open to everyone.</p></div></details>
@@ -497,7 +500,7 @@
         <div class="tile-body"><p>Occasional lessons hosted at the resort, typically an added cost. Contact the resort directly for current pricing and availability.</p></div></details>
 
       <details class="tile"><summary><span class="tile-icon">💍</span><span class="tile-name">Weddings &amp; Special Events</span></summary>
-        <div class="tile-body"><p>A chapel near Kuilima Point can be booked for weddings and other special occasions, along with other oceanfront venues at the resort. <a href="https://www.turtlebayresort.com/weddings/wedding-venues" target="_blank" rel="noopener">Learn more</a>.</p></div></details>
+        <div class="tile-body"><p>A chapel near Kuilima Point can be booked for weddings and other special occasions, along with other oceanfront venues at the resort. Out-of-town guests can stay right on-site at the resort, making it easy to host a full wedding weekend — it's also a beautiful setting for a vow renewal. <a href="https://www.turtlebayresort.com/weddings/wedding-venues" target="_blank" rel="noopener">Learn more</a>.</p></div></details>
 
     </div>
 
@@ -532,6 +535,9 @@
       <details class="tile"><summary><span class="tile-icon">🎣</span><span class="tile-name">Deep-Sea Fishing</span></summary>
         <div class="tile-body"><p>Charters targeting marlin, mahi-mahi, and ahi depart from Haleiwa Harbor with <a href="https://www.gofishinghawaii.com/" target="_blank" rel="noopener">Go Fishing Hawaii</a>.</p></div></details>
 
+      <details class="tile"><summary><span class="tile-icon">🪂</span><span class="tile-name">Skydiving</span></summary>
+        <div class="tile-body"><p>Tandem skydiving over the North Shore, departing from Dillingham Airfield in Mokule'ia. Two operators to choose from: <a href="https://skydivehawaii.com/" target="_blank" rel="noopener">Skydive Hawaii</a> and <a href="https://pacificskydivinghonolulu.com/" target="_blank" rel="noopener">Pacific Skydiving Center</a>.</p></div></details>
+
     </div>
 
     <!-- FOOD & DRINK -->
@@ -549,6 +555,12 @@
         <span class="food-loc">At the resort</span>
         <h3>Sunset Pool Bar</h3>
         <p>Right at the pool, with front-row views of the surf break and ocean beyond. Order a Mai Tai, grab some food, and watch surfers from one of the best seats on the North Shore. Open to non-resort guests — live music Thursday &amp; Sunday evenings. Open 10am–8pm, food service 11am–7pm. <a href="https://www.turtlebayresort.com/dining/sunset" target="_blank" rel="noopener">View menu</a>.</p>
+      </div>
+
+      <div class="food-card resort">
+        <span class="food-loc">At the resort · Golf clubhouse</span>
+        <h3>Lei Lei's Bar &amp; Grill</h3>
+        <p>Casual, open-air dining run by the resort at the golf clubhouse — the closest restaurant to Kuilima Estates West. Fresh fish, burgers, and poke, with views of the course and the North Shore. Try the Lei Lei's Lemonade or their signature Arnold Palmer. Breakfast 7–10:30am, lunch 10:30am–4pm, dinner 4–9pm.</p>
       </div>
 
       <div class="food-card resort">
@@ -612,6 +624,9 @@
     <span class="eyebrow">Plan your day</span>
     <h2>One-Day Itineraries</h2>
     <p class="section-sub">Three ways to spend a day on O'ahu, depending on how far you want to roam from Turtle Bay.</p>
+    <figure class="single-photo">
+      <img src="turtle-bay-aerial.jpg" alt="Aerial view of Turtle Bay Resort and Kuilima Point on O'ahu's North Shore">
+    </figure>
 
     <details class="card" open>
       <summary>
