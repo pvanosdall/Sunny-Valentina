@@ -154,14 +154,13 @@
   .wave{display:block; width:100%; height:46px; margin-top:-1px;}
 
   /* ---------- PHOTOS ---------- */
-  .banner-photo{width:100%; height:220px; object-fit:cover; display:block;}
   .photo-pair{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:28px; border-radius:var(--radius); overflow:hidden;}
   .photo-pair img{width:100%; height:150px; object-fit:cover; display:block;}
   .single-photo{
-    max-width:480px; margin:0 auto 28px; border-radius:var(--radius);
+    max-width:100%; margin:0 auto 28px; border-radius:var(--radius);
     overflow:hidden; box-shadow:0 8px 22px rgba(31,77,88,.12);
   }
-  .single-photo img{width:100%; height:auto; display:block;}
+  .single-photo img{width:100%; height:auto; display:block; max-height:420px; object-fit:cover;}
   figure.inline-figure{margin:16px 0 8px;}
   figure.inline-figure img{width:100%; border-radius:10px; display:block; height:170px; object-fit:cover;}
   figure.inline-figure figcaption{font-size:.74rem; color:var(--ink-soft); margin-top:6px; font-style:italic;}
@@ -432,7 +431,11 @@
   <a class="chip" href="#book-direct">📩 Book Direct</a>
 </div>
 
-<img class="banner-photo" src="northshore-coastline-sunset.jpg" alt="North Shore coastline at sunset near Turtle Bay">
+<div class="wrap">
+  <figure class="single-photo">
+    <img src="turtle-bay-aerial.jpg" alt="Aerial view of Turtle Bay Resort and Kuilima Point on O'ahu's North Shore">
+  </figure>
+</div>
 
 <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#E9DFC9"/></svg>
 
@@ -624,9 +627,10 @@
     <span class="eyebrow">Plan your day</span>
     <h2>One-Day Itineraries</h2>
     <p class="section-sub">Three ways to spend a day on O'ahu, depending on how far you want to roam from Turtle Bay.</p>
-    <figure class="single-photo">
-      <img src="turtle-bay-aerial.jpg" alt="Aerial view of Turtle Bay Resort and Kuilima Point on O'ahu's North Shore">
-    </figure>
+    <div class="photo-pair">
+      <img src="turtle-swimming-surface.jpg" alt="Sea turtle swimming near Turtle Bay">
+      <img src="surfboards-fence.jpg" alt="Surfboards along the North Shore">
+    </div>
 
     <details class="card" open>
       <summary>
