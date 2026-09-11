@@ -14,6 +14,7 @@
     --sea-glass:#86ACBB;
     --soft-sand:#E9DFC9;
     --light-foam:#F6F4EF;
+    --pale-mist:#EAF2F1;
     --palm-green:#789B7A;
     --sunset:#E3A36F;
     --ink:#1E2E32;
@@ -189,6 +190,7 @@
   section{padding:54px 0 60px;}
   .bg-sand{background:var(--soft-sand);}
   .bg-foam{background:var(--light-foam);}
+  .bg-mist{background:var(--pale-mist);}
   section h2{font-size:1.6rem; color:var(--deep-ocean); margin-bottom:6px;}
   .section-sub{margin-bottom:30px; max-width:520px;}
 
@@ -293,6 +295,41 @@
     font-weight:600; font-size:.86rem; color:var(--ink);
   }
   .amenity-icon{font-size:1.2rem; flex-shrink:0;}
+  .rules-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .rule-card{background:#fff; border-radius:var(--radius); border:1px solid rgba(47,111,126,.1); padding:14px 16px;}
+  .rule-card h4{
+    font-family:'Fraunces',serif; font-weight:600; font-size:.92rem; color:var(--deep-ocean);
+    margin:0 0 5px; display:flex; align-items:center; gap:7px;
+  }
+  .rule-card p{font-size:.84rem; margin:0; color:var(--ink-soft); line-height:1.5;}
+
+  /* ---------- REVIEWS CAROUSEL ---------- */
+  .reviews-box{
+    background:#fff; border-radius:var(--radius); border:1px solid rgba(47,111,126,.12);
+    border-top:3px solid var(--sunset);
+    padding:26px 22px 22px; margin-top:32px;
+    box-shadow:0 10px 26px rgba(31,77,88,.1);
+  }
+  .reviews-carousel{max-width:480px; margin:0 auto; text-align:center; position:relative;}
+  .reviews-label{
+    font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--palm-green); margin-bottom:14px;
+  }
+  .review-slide{display:none; min-height:130px;}
+  .review-slide.active{display:block; animation:reviewFade .5s ease;}
+  @keyframes reviewFade{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);}}
+  .review-stars{color:var(--sunset); font-size:1rem; letter-spacing:3px; margin-bottom:12px;}
+  .review-quote{
+    font-family:'Fraunces',serif; font-style:italic; font-size:1.08rem; color:var(--ink);
+    line-height:1.55; margin:0 0 12px;
+  }
+  .review-author{font-size:.8rem; color:var(--ink-soft); font-weight:600;}
+  .review-dots{display:flex; justify-content:center; gap:7px; margin-top:18px;}
+  .review-dot{
+    width:7px; height:7px; border-radius:50%; background:rgba(47,111,126,.25);
+    border:none; padding:0; cursor:pointer;
+  }
+  .review-dot.active{background:var(--deep-ocean); width:20px; border-radius:4px; transition:width .25s ease, background .25s ease;}
   .unit-card{
     background:#fff; border-radius:var(--radius); border:1px solid rgba(47,111,126,.12);
     overflow:hidden; margin-bottom:28px;
@@ -413,6 +450,7 @@
       <li><a href="#sunnypicks">Sunny Girl's Picks</a></li>
       <li><a href="#our-units">Our Units</a></li>
       <li><a href="#faq">FAQ</a></li>
+      <li><a href="#house-rules">House Rules</a></li>
     </ul>
   </nav>
 </header>
@@ -424,7 +462,7 @@
   <div class="wrap hero-inner">
     <span class="eyebrow">North Shore, O'ahu</span>
     <h1>Welcome to the North Shore.</h1>
-    <p class="lead">Curated adventures, local favorites, and island know-how — put together by Sunny Heaven &amp; Aloha Valentina, your home base at Turtle Bay.</p>
+    <p class="lead">Curated adventures, local favorites, and island know-how from Sunny Heaven &amp; Aloha Valentina, your home base at Turtle Bay.</p>
     <div class="cta-row">
       <a href="#turtle-bay" class="btn btn-sunset">What should we do today? →</a>
       <a href="#itineraries" class="btn btn-ghost">Plan a full day</a>
@@ -467,7 +505,7 @@
     </div>
 
     <!-- THINGS TO DO -->
-    <p class="section-sub" style="margin-top:14px;">We've organized this by where it is — what's included right here at Kuilima, what's at Turtle Bay Resort (open to everyone, most things booked and paid separately), and what's worth the drive beyond the resort. Look for ⭐ on our favorites.</p>
+    <p class="section-sub" style="margin-top:14px;">We've organized this by where it is: what's included right here at Kuilima, what's at Turtle Bay Resort (open to everyone, most things booked and paid separately), and what's worth the drive beyond the resort. Look for ⭐ on our favorites.</p>
 
     <div class="subhead" id="top10">At Kuilima Estates West <span class="tier-badge included">Included for guests</span></div>
     <div class="tile-grid">
@@ -476,31 +514,31 @@
         <div class="tile-body"><p>Several community pools throughout Kuilima West, including one just a short walk away. Access details are in your welcome info.</p></div></details>
 
       <details class="tile"><summary><span class="tile-icon">🎾</span><span class="tile-name">Tennis &amp; Pickleball</span></summary>
-        <div class="tile-body"><p>Two courts on property, free for guests to use — no reservation required. Pickleball paddles are provided in the unit.</p></div></details>
+        <div class="tile-body"><p>Two courts on property, free for guests to use, with no reservation required. Pickleball paddles are provided in the unit.</p></div></details>
 
     </div>
 
     <div class="subhead">At Turtle Bay Resort <span class="tier-badge paid">Open to all · most activities paid</span></div>
-    <p class="subhead-note">The resort grounds, beach, and dining are free to enjoy for everyone. The resort pool and hot tub require a day pass, and activities like golf, horseback riding, and surf lessons are booked and paid separately — no day pass or resort stay required.</p>
+    <p class="subhead-note">The resort grounds, beach, and dining are free to enjoy for everyone. The resort pool and hot tub require a day pass, and activities like golf, horseback riding, and surf lessons are booked and paid separately, with no day pass or resort stay required.</p>
     <div class="tile-grid">
 
       <details class="tile"><summary><span class="tile-icon">🌊</span><span class="tile-name">Resort Grounds &amp; Pool Bar <span class="fav-star">⭐</span></span></summary>
-        <div class="tile-body"><p>Free to enjoy — walk the grounds or relax on the edge of Kuilima Cove. Grab a bite and a drink at the Sunset Pool Bar (see Food &amp; Drink for hours and menu).</p></div></details>
+        <div class="tile-body"><p>Free to enjoy: walk the grounds or relax on the edge of Kuilima Cove. Grab a bite and a drink at the Sunset Pool Bar (see Food &amp; Drink for hours and menu).</p></div></details>
 
       <details class="tile"><summary><span class="tile-icon">🍔</span><span class="tile-name">Lei Lei's Bar &amp; Grill</span></summary>
-        <div class="tile-body"><p>A casual, open-air spot at the golf clubhouse, run by the resort — the closest restaurant to Kuilima Estates West. Great for breakfast, lunch, or dinner (see Food &amp; Drink for hours).</p></div></details>
+        <div class="tile-body"><p>A casual, open-air spot at the golf clubhouse, run by the resort and the closest restaurant to Kuilima Estates West. Great for breakfast, lunch, or dinner (see Food &amp; Drink for hours).</p></div></details>
 
       <details class="tile"><summary><span class="tile-icon">🏝️</span><span class="tile-name">Kuilima Cove <span class="fav-star">⭐</span></span></summary>
-        <div class="tile-body"><p>A protected, sandy cove right at the resort with calm water — great for swimming and relaxing. It's a public beach, free and open to everyone.</p></div></details>
+        <div class="tile-body"><p>A protected, sandy cove right at the resort with calm water, great for swimming and relaxing. It's a public beach, free and open to everyone.</p></div></details>
 
       <details class="tile"><summary><span class="tile-icon">🚶</span><span class="tile-name">Coastal Sunrise Walk <span class="fav-star">⭐</span></span></summary>
-        <div class="tile-body"><p>Start your day with a walk along the coastal paths near Turtle Bay Resort — free, scenic, and best in the early morning light.</p></div></details>
+        <div class="tile-body"><p>Start your day with a walk along the coastal paths near Turtle Bay Resort: free, scenic, and best in the early morning light.</p></div></details>
 
       <details class="tile"><summary><span class="tile-icon">🏖️</span><span class="tile-name">Resort Pool &amp; Hot Tub <span class="tier-badge paid">Day pass</span></span></summary>
-        <div class="tile-body"><p>Four resort pools, waterslides, and a hot tub — accessible with a day pass (from around $120) purchased through the resort.</p></div></details>
+        <div class="tile-body"><p>Four resort pools, waterslides, and a hot tub, accessible with a day pass (from around $120) purchased through the resort.</p></div></details>
 
       <details class="tile"><summary><span class="tile-icon">⛳</span><span class="tile-name">Golf</span></summary>
-        <div class="tile-body"><p>Two championship courses — the Arnold Palmer Course and the George Fazio Course (course availability can vary, so check current status). Book tee times directly through <a href="https://turtlebaygolf.com/" target="_blank" rel="noopener">Turtle Bay Golf</a>.</p></div></details>
+        <div class="tile-body"><p>Two championship courses: the Arnold Palmer Course and the George Fazio Course (course availability can vary, so check current status). Book tee times directly through <a href="https://turtlebaygolf.com/" target="_blank" rel="noopener">Turtle Bay Golf</a>.</p></div></details>
 
       <details class="tile"><summary><span class="tile-icon">🐎</span><span class="tile-name">Horseback Riding <span class="fav-star">⭐</span></span></summary>
         <div class="tile-body"><p>Trail rides along oceanfront paths and through ironwood forests. Book through <a href="https://www.turtlebayresort.com/things-to-do/activities/horseback-riding" target="_blank" rel="noopener">The Stables at Turtle Bay</a>.</p></div></details>
@@ -521,7 +559,7 @@
         <div class="tile-body"><p>Occasional lessons hosted at the resort, typically an added cost. Contact the resort directly for current pricing and availability.</p></div></details>
 
       <details class="tile"><summary><span class="tile-icon">💍</span><span class="tile-name">Weddings &amp; Special Events</span></summary>
-        <div class="tile-body"><p>A chapel near Kuilima Point can be booked for weddings and other special occasions, along with other oceanfront venues at the resort. Out-of-town guests can stay right on-site at the resort, making it easy to host a full wedding weekend — it's also a beautiful setting for a vow renewal. <a href="https://www.turtlebayresort.com/weddings/wedding-venues" target="_blank" rel="noopener">Learn more</a>.</p></div></details>
+        <div class="tile-body"><p>A chapel near Kuilima Point can be booked for weddings and other special occasions, along with other oceanfront venues at the resort. Out-of-town guests can stay right on-site at the resort, making it easy to host a full wedding weekend. It's also a beautiful setting for a vow renewal. <a href="https://www.turtlebayresort.com/weddings/wedding-venues" target="_blank" rel="noopener">Learn more</a>.</p></div></details>
 
     </div>
 
@@ -536,10 +574,10 @@
         <div class="tile-body"><p>Waterfall, botanical gardens, and Hawaiian cultural sites along an easy paved path. <a href="https://www.waimeavalley.net/" target="_blank" rel="noopener">Plan your visit</a>.</p></div></details>
 
       <details class="tile"><summary><span class="tile-icon">🐢</span><span class="tile-name">Shark's Cove &amp; Laniakea <span class="fav-star">⭐</span></span></summary>
-        <div class="tile-body"><p>Snorkel the tide pools at Shark's Cove (summer months) and visit the sleeping sea turtles at Laniakea Beach. Please maintain at least 10 feet of distance from the turtles — it's the law, and it keeps them safe and undisturbed.</p></div></details>
+        <div class="tile-body"><p>Snorkel the tide pools at Shark's Cove (summer months) and visit the sleeping sea turtles at Laniakea Beach. Please maintain at least 10 feet of distance from the turtles. It's the law, and it keeps them safe and undisturbed.</p></div></details>
 
       <details class="tile"><summary><span class="tile-icon">🛍️</span><span class="tile-name">Haleiwa Town <span class="fav-star">⭐</span></span></summary>
-        <div class="tile-body"><p>The historic surf town, a 20-minute drive down the road — boutiques, surf shops, and local restaurants.</p></div></details>
+        <div class="tile-body"><p>The historic surf town, a 20-minute drive down the road, with boutiques, surf shops, and local restaurants.</p></div></details>
 
       <details class="tile"><summary><span class="tile-icon">🌴</span><span class="tile-name">Zipline Adventure</span></summary>
         <div class="tile-body"><p>O'ahu's longest zipline over a working farm at <a href="https://www.climbworks.com/keana-farms/" target="_blank" rel="noopener">CLIMB Works Keana Farms</a> in Kahuku.</p></div></details>
@@ -573,58 +611,70 @@
     <div class="food-grid">
 
       <div class="food-card resort">
-        <span class="food-loc">At the resort</span>
+        <span class="food-loc">At the resort <span class="fav-star">⭐</span></span>
         <h3>Sunset Pool Bar</h3>
-        <p>Right at the pool, with front-row views of the surf break and ocean beyond. Order a Mai Tai, grab some food, and watch surfers from one of the best seats on the North Shore. Open to non-resort guests — live music Thursday &amp; Sunday evenings. Open 10am–8pm, food service 11am–7pm. <a href="https://www.turtlebayresort.com/dining/sunset" target="_blank" rel="noopener">View menu</a>.</p>
+        <p>Right at the pool, with front-row views of the surf break and ocean beyond. Order a Mai Tai, grab some food, and watch surfers from one of the best seats on the North Shore. Open to non-resort guests. Live music Thursday &amp; Sunday evenings. Open 10am–8pm, food service 11am–7pm. <a href="https://www.turtlebayresort.com/dining/sunset" target="_blank" rel="noopener">View menu</a>.</p>
       </div>
 
       <div class="food-card resort">
         <span class="food-loc">At the resort · Golf clubhouse</span>
         <h3>Lei Lei's Bar &amp; Grill</h3>
-        <p>Casual, open-air dining run by the resort at the golf clubhouse — the closest restaurant to Kuilima Estates West. Fresh fish, burgers, and poke, with views of the course and the North Shore. Try the Lei Lei's Lemonade or their signature Arnold Palmer. Breakfast 7–10:30am, lunch 10:30am–4pm, dinner 4–9pm.</p>
+        <p>Casual, open-air dining run by the resort at the golf clubhouse, the closest restaurant to Kuilima Estates West. Fresh fish, burgers, and poke, with views of the course and the North Shore. Try the Lei Lei's Lemonade or their signature Arnold Palmer. Breakfast 7–10:30am, lunch 10:30am–4pm, dinner 4–9pm.</p>
       </div>
 
       <div class="food-card resort">
-        <span class="food-loc">At the resort</span>
+        <span class="food-loc">At the resort <span class="fav-star">⭐</span></span>
         <h3>Beach House by Roy Yamaguchi</h3>
-        <p>Right on the sand at Kuilima Cove — premium beachfront dining and custom cocktails with your toes practically in the water. Open 11:30am–2:30pm and 4:30pm–9pm. Our favorite after-dinner drink: the "Beautiful" — Courvoisier &amp; Grand Marnier, served up in a snifter. <a href="https://www.turtlebayresort.com/dining/roys-beach-house" target="_blank" rel="noopener">View the menu</a>.</p>
+        <p>Right on the sand at Kuilima Cove, with premium beachfront dining and custom cocktails with your toes practically in the water. Open 11:30am–2:30pm and 4:30pm–9pm. Our favorite after-dinner drink: the "Beautiful" — Courvoisier &amp; Grand Marnier, served up in a snifter. <a href="https://www.turtlebayresort.com/dining/roys-beach-house" target="_blank" rel="noopener">View the menu</a>.</p>
         <span class="dog-tag">🐾 Dog-friendly</span>
       </div>
 
       <div class="food-card nearby">
         <span class="food-loc">Near Turtle Bay · Kahuku</span>
         <h3>Kahuku Farms</h3>
-        <p>A true farm-to-table experience just minutes from the resort — winner of Newsweek's 2025 Best Farm-to-Table Restaurant in the US. Run by a fourth-generation farming family. Try the acai bowl (made with their own Hawaiian-grown acai), farm pizza, veggie panini, or smoothies. The wagon farm tour is a great add-on. Open Thu–Sun, 11am–4pm. <a href="https://kahukufarms.com/" target="_blank" rel="noopener">Plan your visit</a>.</p>
+        <p>A true farm-to-table experience just minutes from the resort, winner of Newsweek's 2025 Best Farm-to-Table Restaurant in the US. Run by a fourth-generation farming family. Try the acai bowl (made with their own Hawaiian-grown acai), farm pizza, veggie panini, or smoothies. The wagon farm tour is a great add-on. Open Thu–Sun, 11am–4pm. <a href="https://kahukufarms.com/" target="_blank" rel="noopener">Plan your visit</a>.</p>
+      </div>
+
+      <div class="food-card nearby">
+        <span class="food-loc">Near Turtle Bay · Kahuku</span>
+        <h3>Kahuku Superette</h3>
+        <p>A local grocery stop that doubles as one of the best quick bites around. Their poke is some of the best on the North Shore. Handy for grabbing essentials too.</p>
       </div>
 
       <div class="food-card nearby">
         <span class="food-loc">Near Turtle Bay · Kahuku Sugar Mill <span class="fav-star">⭐</span></span>
         <h3>Shrimp Trucks &amp; Food Trucks at Kahuku</h3>
-        <p>The Kahuku Sugar Mill is a lively cluster of food trucks, restaurants, and shops on Kamehameha Highway. Two of our favorites for classic garlic shrimp: <strong>Big Wave Shrimp Truck</strong> and <strong>Giovanni's</strong>. <strong>Seven Brothers Burgers</strong> is the anchor — known for massive island-style burgers, garlic shrimp, and coconut macadamia shrimp. Also here: <strong>Fumi's</strong> for more garlic shrimp, <strong>Ry's Poke Shack</strong> for fresh ahi, <strong>Surf N Salsa</strong> for Mexican, and Ono Yo for frozen yogurt. Plan for a wander and pick what looks good.</p>
+        <p>The Kahuku Sugar Mill is a lively cluster of food trucks, restaurants, and shops on Kamehameha Highway. Two of our favorites for classic garlic shrimp: <strong>Big Wave Shrimp Truck</strong> and <strong>Giovanni's</strong>. <strong>Seven Brothers Burgers</strong> is the anchor, known for massive island-style burgers, garlic shrimp, and coconut macadamia shrimp. Also here: <strong>Fumi's</strong> for more garlic shrimp, <strong>Ry's Poke Shack</strong> for fresh ahi, <strong>Surf N Salsa</strong> for Mexican, and Ono Yo for frozen yogurt. Plan for a wander and pick what looks good.</p>
       </div>
 
       <div class="food-card pupukea">
         <span class="food-loc">Pupukea · Near Shark's Cove</span>
         <h3>Pupukea Food Trucks</h3>
-        <p><strong>Pupukea Grill</strong> — right across from Shark's Cove — is a North Shore institution. Fresh poke bowls, sushi, kalua pork bowls, wraps, smoothie bowls, and vegan options. The spicy tuna poke bowl is legendary. <strong>Da Bald Guy</strong> nearby does outstanding plate lunches — kalbi beef and chopped rib eye are the move. Open Tue–Sun. <a href="https://www.pupukeagrill.com/" target="_blank" rel="noopener">Pupukea Grill menu</a>.</p>
+        <p><strong>Pupukea Grill</strong>, right across from Shark's Cove, is a North Shore institution. Fresh poke bowls, sushi, kalua pork bowls, wraps, smoothie bowls, and vegan options. The spicy tuna poke bowl is legendary. <strong>Da Bald Guy</strong> nearby does outstanding plate lunches: kalbi beef and chopped rib eye are the move. Open Tue–Sun. <a href="https://www.pupukeagrill.com/" target="_blank" rel="noopener">Pupukea Grill menu</a>.</p>
+      </div>
+
+      <div class="food-card pupukea">
+        <span class="food-loc">Sunset Beach</span>
+        <h3>Ted's Bakery</h3>
+        <p>A North Shore landmark since the 1950s, famous for its cream pies: try the lilikoi or the chocolate haupia. Plate lunches and sandwiches too. Open daily. <a href="https://www.google.com/maps/search/?api=1&amp;query=Ted%27s+Bakery+59-024+Kamehameha+Hwy+Haleiwa+HI+96712" target="_blank" rel="noopener">Find it on Google Maps</a>.</p>
       </div>
 
       <div class="food-card haleiwa">
         <span class="food-loc">Haleiwa Town</span>
         <h3>Haleiwa Eats</h3>
-        <p>The historic surf town is packed with great spots. <strong>Uncle Bo's Pupu Bar &amp; Grill</strong> for local-style seafood and pupus. <strong>Waialua Bakery &amp; Juice Bar</strong> for sandwiches, house-baked breads, and smoothies. <strong>Matsumoto Shave Ice</strong> for the classic Hawaiian treat. <strong>Surf N Sea</strong> for browsing while you snack.</p>
+        <p>The historic surf town is packed with great spots. <strong>Uncle Bo's Pupu Bar &amp; Grill</strong> for local-style seafood and pupus. <strong>Waialua Bakery &amp; Juice Bar</strong> for sandwiches, house-baked breads, and smoothies. <strong>Matsumoto Shave Ice</strong> for the classic Hawaiian treat. <strong>North Shore Tacos</strong> for fresh Baja-style fish tacos. <strong>Surf N Sea</strong> for browsing while you snack.</p>
         <span class="dog-tag">🐾 Dog-friendly seating at all of these</span>
       </div>
 
       <div class="food-card haleiwa">
         <span class="food-loc">Haleiwa Town</span>
         <h3>Teddy's Bigger Burgers</h3>
-        <p>A North Shore classic since 1998 — charbroiled burgers, crispy fries, and a fun tiki-bar atmosphere right in town. Open 10am–9pm. <a href="https://teddysbb.com/" target="_blank" rel="noopener">View menu</a>.</p>
+        <p>A North Shore classic since 1998: charbroiled burgers, crispy fries, and a fun tiki-bar atmosphere right in town. Open 10am–9pm. <a href="https://teddysbb.com/" target="_blank" rel="noopener">View menu</a>.</p>
         <span class="dog-tag">🐾 Dog-friendly</span>
       </div>
 
       <div class="food-card nearby">
-        <span class="food-loc">Scenic drive south · Ka'a'awa</span>
+        <span class="food-loc">Scenic drive south · Ka'a'awa <span class="fav-star">⭐</span></span>
         <h3>The Crouching Lion</h3>
         <p>About 30 minutes south down the Windward Coast for modern Hawaiian cuisine, ocean views, and a cold drink. Open 11:00am–9pm daily. They also have a coffee shop on-site, Hala Tree Cafe, open daily 7am–4pm. <a href="https://thecrouchinglion.com/" target="_blank" rel="noopener">Learn more</a>.</p>
         <span class="dog-tag">🐾 Dog-friendly</span>
@@ -660,15 +710,15 @@
           <li><span class="t-label">8:00 AM</span>Breakfast at Sunrise Shack or Ted's Bakery.</li>
           <li><span class="t-label">9:30 AM</span>Explore <a href="https://www.waimeavalley.net/" target="_blank" rel="noopener">Waimea Valley</a> — waterfall and botanical gardens.</li>
           <li><span class="t-label">11:00 AM</span>Relax on the sand at Waimea Bay.</li>
-          <li><span class="t-label">12:00 PM</span>Lunch from a food truck at Shark's Cove or in Haleiwa — shrimp trucks like Giovanni's, or poke trucks like Pupukea Grill, are both great options.</li>
+          <li><span class="t-label">12:00 PM</span>Lunch from a food truck at Shark's Cove or in Haleiwa: shrimp trucks like Giovanni's, or poke trucks like Pupukea Grill, are both great options.</li>
           <li><span class="t-label">1:30 PM</span>Choose your adventure: snorkel at Shark's Cove, a <a href="https://www.jobsurfexperience.com/north-shore/turtle-bay-resort/" target="_blank" rel="noopener">surf lesson</a>, <a href="https://www.turtlebayresort.com/things-to-do/activities/horseback-riding" target="_blank" rel="noopener">horseback riding</a>, or <a href="https://www.climbworks.com/keana-farms/" target="_blank" rel="noopener">ziplining</a>. Our favorite in summer is snorkeling at Shark's Cove.</li>
           <li><span class="t-label">4:00 PM</span>Browse Haleiwa Town's surf shops and boutiques, grab shave ice. On the drive back, stop at Laniakea Beach for the sleeping sea turtles and Ehukai Beach Park for the famous Pipeline surf break.</li>
-          <li><span class="t-label">Sunset</span>A drink by the pool back at Turtle Bay — the full bar there has great views of the ocean and surfers, plus food options if you're hungry.</li>
+          <li><span class="t-label">Sunset</span>A drink by the pool back at Turtle Bay: the full bar there has great views of the ocean and surfers, plus food options if you're hungry.</li>
           <li><span class="t-label">Dinner</span><a href="https://www.turtlebayresort.com/dining/roys-beach-house" target="_blank" rel="noopener">Beach House by Roy Yamaguchi</a>, right on the beach at the resort and dog-friendly.</li>
         </ul>
         <figure class="inline-figure">
           <img src="turtle-underwater.jpg" alt="Sea turtle at Shark's Cove">
-          <figcaption>Green sea turtles are common at Shark's Cove and Laniakea — keep a respectful distance and no touching.</figcaption>
+          <figcaption>Green sea turtles are common at Shark's Cove and Laniakea. Keep a respectful distance and no touching.</figcaption>
         </figure>
       </div>
     </details>
@@ -709,29 +759,25 @@
       </summary>
       <div class="card-body">
         <ul class="timeline">
-          <li><span class="t-label">7:00 AM</span>Hike Diamond Head before it gets hot and crowded — a reservation is required in advance for entry and parking. (60–90 min)</li>
+          <li><span class="t-label">7:00 AM</span>Hike Diamond Head before it gets hot and crowded. A reservation is required in advance for entry and parking. (60–90 min)</li>
           <li><span class="t-label">8:30 AM</span>Breakfast nearby before heading into town.</li>
           <li><span class="t-label">10:00 AM</span>Kaka'ako — explore the neighborhood's murals, boutiques, and shops.</li>
           <li><span class="t-label">11:30 AM</span>Lunch at Hana Koa Brewing Co. in Kaka'ako.</li>
-          <li><span class="t-label">1:00 PM</span>Visit a museum — the Honolulu Museum of Art or the Bishop Museum are both excellent choices.</li>
+          <li><span class="t-label">1:00 PM</span>Visit a museum: the Honolulu Museum of Art or the Bishop Museum are both excellent choices.</li>
           <li><span class="t-label">3:00 PM</span>Head to Waikiki for a surf lesson or to relax on the beach.</li>
           <li><span class="t-label">5:00 PM</span>Grab a drink at Duke's Waikiki, or book an afternoon catamaran sail for ocean views. Our recommendation: a drink at Hau Tree Lanai in the Kaimana Beach Hotel.</li>
           <li><span class="t-label">7:00 PM</span>Dinner in Waikiki, or head to Chinatown — Fête is our recommendation.</li>
-          <li><span class="t-label">~8:30 PM</span>Drive back to Turtle Bay — about 1.5 hours, maybe a little less.</li>
+          <li><span class="t-label">~8:30 PM</span>Drive back to Turtle Bay, about 1.5 hours, maybe a little less.</li>
         </ul>
-        <p class="note-text">Insider tips: book your Diamond Head reservation online well ahead of time — time slots fill up fast — and start early to make the most of the day before Honolulu traffic picks up.</p>
+        <p class="note-text">Insider tips: book your Diamond Head reservation online well ahead of time, since time slots fill up fast, and start early to make the most of the day before Honolulu traffic picks up.</p>
         <p class="note-text">Prefer an ocean-focused day instead? Swap in Hanauma Bay for snorkeling, Sea Life Park, and the Makapu'u Lighthouse trail.</p>
       </div>
     </details>
   </div>
 </section>
 
-<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#E9DFC9"/></svg>
-
-<!-- ============================================================
-     SECTION 4 — SUNNY GIRL'S PICKS
-     ============================================================ -->
-<section class="bg-sand" id="sunnypicks">
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" style="background:#F6F4EF;"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#EAF2F1"/></svg>
+<section class="bg-mist" id="sunnypicks">
   <div class="wrap">
     <div class="sunny-title-row">
       <img class="sunny-portrait-img" src="sunny-girl-photo.png" alt="Sunny Girl, the English Cream Retriever behind Sunny Heaven & Aloha Valentina">
@@ -740,7 +786,7 @@
         <h2>Sunny Girl's Picks</h2>
       </div>
     </div>
-    <p class="section-sub">Inspired by Sunny Girl — the friendly English Cream pup who loves riding shotgun with the windows down and greeting everyone like an old friend. Like Sunny Girl, we hope you explore, slow down, discover new places, and make memories of your own.</p>
+    <p class="section-sub">Inspired by Sunny Girl, the friendly English Cream pup who loves riding shotgun with the windows down and greeting everyone like an old friend. Like Sunny Girl, we hope you explore, slow down, discover new places, and make memories of your own.</p>
 
     <div class="subhead">Sunny Girl's Favorites</div>
     <ul class="fav-list">
@@ -754,7 +800,7 @@
       </li>
       <li>
         <svg class="paw" viewBox="0 0 24 24" fill="#789B7A"><circle cx="12" cy="15" r="5"/><circle cx="5" cy="9" r="2.6"/><circle cx="19" cy="9" r="2.6"/><circle cx="8.5" cy="5" r="2.4"/><circle cx="15.5" cy="5" r="2.4"/></svg>
-        <div><span class="fav-label">Beach</span><p>Kuilima Cove at Turtle Bay Resort — the cove to the right of the resort has public access and a calm, sandy beach that's perfect for relaxing, just a short walk from Kuilima Estates West.</p></div>
+        <div><span class="fav-label">Beach</span><p>Kuilima Cove at Turtle Bay Resort. The cove to the right of the resort has public access and a calm, sandy beach that's perfect for relaxing, just a short walk from Kuilima Estates West.</p></div>
       </li>
       <li>
         <svg class="paw" viewBox="0 0 24 24" fill="#789B7A"><circle cx="12" cy="15" r="5"/><circle cx="5" cy="9" r="2.6"/><circle cx="19" cy="9" r="2.6"/><circle cx="8.5" cy="5" r="2.4"/><circle cx="15.5" cy="5" r="2.4"/></svg>
@@ -783,6 +829,8 @@
     <p class="note-text">Hungry pup in tow? Look for the 🐾 tag in the Food &amp; Drink section above for dog-friendly restaurants and cafes. For a complete map, reviews, and current pet policies, see the <a href="https://www.bringfido.com/destination/city/haleiwa-hi-us/" target="_blank" rel="noopener" style="color:var(--deep-ocean); font-weight:600;">BringFido Haleiwa Dog Guide</a>.</p>
   </div>
 </section>
+
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" style="background:#EAF2F1;"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#E9DFC9"/></svg>
 
 <section class="bg-sand" id="our-units">
   <div class="wrap">
@@ -836,9 +884,53 @@
         <div class="unit-feature"><span class="unit-icon">🏖️</span><span>Minutes' walk to the beach</span></div>
         <div class="unit-feature"><span class="unit-icon">📐</span><span>High ceilings, loft area</span></div>
       </div>
-      <p class="unit-desc">Best location — a fully remodeled two-story condo with two bedrooms plus a loft and high ceilings, overlooking the Fazio Golf Course and the beautifully manicured grounds of Turtle Bay Resort. This peaceful North Shore setting is close to all the great beaches and destinations the North Shore has to offer. Known as the "Gold Coast" at Kuilima West, this section looks across a fairway toward the ocean with gorgeous sunsets, just a few minutes' walk to the beach and Turtle Bay Hotel.</p>
+      <p class="unit-desc">Best location. A fully remodeled two-story condo with two bedrooms plus a loft and high ceilings, overlooking the Fazio Golf Course and the beautifully manicured grounds of Turtle Bay Resort. This peaceful North Shore setting is close to all the great beaches and destinations the North Shore has to offer. Known as the "Gold Coast" at Kuilima West, this section looks across a fairway toward the ocean with gorgeous sunsets, just a few minutes' walk to the beach and Turtle Bay Hotel.</p>
       <div class="unit-book-row">
         <a class="btn-airbnb" href="https://airbnb.com/h/sunnylovesturtlebay2" target="_blank" rel="noopener">See more photos & book on Airbnb →</a>
+      </div>
+    </div>
+
+    <div class="reviews-box">
+      <div class="reviews-carousel" id="reviewsCarousel">
+        <div class="reviews-label">🌺 From Our Recent Guests</div>
+
+        <div class="review-slide active">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-quote">"A beautiful condo in a quiet neighborhood, walkable to the beach. Lots of nice touches that made it feel like home, and we loved all the local recommendations."</p>
+          <p class="review-author">Kathryn — Spring, Texas</p>
+        </div>
+
+        <div class="review-slide">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-quote">"Such a lovely place in a quiet resort near pristine Turtle Bay. I loved the lanai every morning with roosters and birds around, and a lush view of green grass, right across the pool, with everything we needed ready to go."</p>
+          <p class="review-author">Qing — Bethesda, Maryland</p>
+        </div>
+
+        <div class="review-slide">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-quote">"Perfect spot on the North Shore, with lots to do in either direction. Very clean, with plenty of space for our family of five, and beach towels and chairs on site made beach days so easy."</p>
+          <p class="review-author">Kristen — North Attleborough, Massachusetts</p>
+        </div>
+
+        <div class="review-slide">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-quote">"Great location, close to everything on the North Shore. Amazing ocean views from the walking paths made it the perfect place to relax in paradise."</p>
+          <p class="review-author">Doug — Charleston, South Carolina</p>
+        </div>
+
+        <div class="review-slide">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-quote">"Loved this location, easy in and out, with super cute decor and everything we needed for the beach or pool. Nicely out of the way of the usual tourist traps."</p>
+          <p class="review-author">Patti — Benicia, California</p>
+        </div>
+
+        <div class="review-dots">
+          <button class="review-dot active" data-slide="0" aria-label="Review 1"></button>
+          <button class="review-dot" data-slide="1" aria-label="Review 2"></button>
+          <button class="review-dot" data-slide="2" aria-label="Review 3"></button>
+          <button class="review-dot" data-slide="3" aria-label="Review 4"></button>
+          <button class="review-dot" data-slide="4" aria-label="Review 5"></button>
+        </div>
       </div>
     </div>
 
@@ -875,7 +967,7 @@
         <span class="chevron">+</span>
       </summary>
       <div class="card-body">
-        <p>Anyone can walk around the resort, visit the beach, and order food and drinks. Resort amenities like the pool, hot tub, and fitness center are reserved for resort guests — but day passes (from around $120), spa passes (from around $50), and cabana rentals are available through the resort if you'd like access. Kuilima Estates West has its own pool and tennis courts for guests to enjoy.</p>
+        <p>The resort grounds, beaches, pool bar, restaurants, shops, and more are open to the public — we highly recommend enjoying a drink and pūpū at the pool bar for sunset. However, amenities such as the pools, hot tub, and fitness center are reserved for resort guests. Various day passes are available, as well as cabana rentals — contact the resort for more information. Kuilima Estates West has its own pools and tennis courts for guests to enjoy.</p>
       </div>
     </details>
 
@@ -887,7 +979,7 @@
         <span class="chevron">+</span>
       </summary>
       <div class="card-body">
-        <p>We stock the condo with everything you need for beach days and island life: beach chairs, umbrellas, beach towels, pool floats, and a pack n' play. Just rinse off the sand and return everything neatly before checkout so the next guest has it too.</p>
+        <p>We stock the condo with everything you need for beach days and island life: beach chairs, umbrellas, beach towels, and a pack n' play. Just rinse off the sand and return everything neatly before checkout so the next guest has it too.</p>
       </div>
     </details>
 
@@ -927,10 +1019,88 @@
       </div>
     </details>
 
+    <details class="card">
+      <summary>
+        <div>
+          <div class="summary-title"><span class="faq-icon">🗑️</span>What do I do with trash if the indoor bin fills up?</div>
+        </div>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="card-body">
+        <p>Just take it straight to the yellow dumpsters anytime — no need to wait. They're emptied Wednesday and Saturday mornings; if you need to take trash out while they're away being hauled, just tie the bag off and leave it in your outer hallway.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary>
+        <div>
+          <div class="summary-title"><span class="faq-icon">🛒</span>What are the closest grocery stores?</div>
+        </div>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="card-body">
+        <p>Foodland in Pūpūkea and Foodland in Lā'ie (a little farther away) both carry grocery basics. Kahuku Superette is likely your closest option, and well worth a visit — their poke is some of the best on the North Shore.</p>
+      </div>
+    </details>
+
   </div>
 </section>
 
-<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" style="background:#F6F4EF;"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#2F6F7E"/></svg>
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" style="background:#F6F4EF;"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#E9DFC9"/></svg>
+
+<!-- ---------- HOUSE RULES ---------- -->
+<section class="bg-sand" id="house-rules">
+  <div class="wrap">
+    <span class="eyebrow">Good to know</span>
+    <h2>House Rules</h2>
+    <p class="section-sub">Please follow all association rules and be respectful of other residents and visitors.</p>
+
+    <div class="rules-grid">
+      <div class="rule-card">
+        <h4>🚭 Smoking &amp; Pets</h4>
+        <p>No smoking or vaping anywhere on the property, including common areas and lanais — required by Hawai'i law. No pets, period.</p>
+      </div>
+      <div class="rule-card">
+        <h4>🌙 Quiet Hours</h4>
+        <p>10 PM–8 AM, conversational noise levels otherwise. No noisy work (hammering, generators, etc.) after 5 PM on weekdays/Saturday, or any time Sunday and holidays.</p>
+      </div>
+      <div class="rule-card">
+        <h4>🚗 Parking</h4>
+        <p>Park only in your assigned space (plus occasional guest space) with your pass displayed on the dashboard or mirror. 10 mph speed limit; max 2 cars per unit.</p>
+      </div>
+      <div class="rule-card">
+        <h4>🗑️ Trash</h4>
+        <p>Bag everything — no hazardous or construction waste, and no bulky items like furniture in the dumpsters.</p>
+      </div>
+      <div class="rule-card">
+        <h4>🚪 Lanais &amp; Entries</h4>
+        <p>Keep lanais and entries clear — no hanging laundry, no storing surfboards or gear in entryways, and no sitting or climbing on railings. Only propane or electric grills allowed on upper lanais.</p>
+      </div>
+      <div class="rule-card">
+        <h4>🏊 Pool</h4>
+        <p>Open 8 AM–9 PM, no lifeguard on duty (swim at your own risk). No glass or alcohol, please shower before entering, and kids 12 &amp; under need adult supervision.</p>
+      </div>
+      <div class="rule-card">
+        <h4>🎾 Tennis Courts</h4>
+        <p>Open 7 AM–sunset, white-soled shoes required, and sign-up is required.</p>
+      </div>
+      <div class="rule-card">
+        <h4>🎉 Events &amp; Gatherings</h4>
+        <p>Register with the Resident Manager at least 48 hours in advance. Capacity limits apply — 30 people at the pavilion, 20 at the pool area.</p>
+      </div>
+      <div class="rule-card">
+        <h4>🤝 General Conduct</h4>
+        <p>No commercial activity, no solicitation, and no criminal conduct.</p>
+      </div>
+      <div class="rule-card">
+        <h4>⚠️ Enforcement</h4>
+        <p>Violations can bring a warning, then fines (up to $100/day or $500/occurrence), eviction, or arrest.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" style="background:#E9DFC9;"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#2F6F7E"/></svg>
 <section class="book-direct" id="book-direct">
   <svg class="palm-deco left" viewBox="0 0 100 100" aria-hidden="true"><g fill="#fff"><path d="M50 90 C40 70 20 60 5 62 C20 50 40 52 50 65 C48 45 32 32 15 30 C35 22 52 32 58 50 C62 32 80 22 98 28 C82 32 68 46 65 64 C78 54 96 56 100 68 C86 64 68 70 58 88 Z"/></g></svg>
   <svg class="palm-deco right" viewBox="0 0 100 100" aria-hidden="true"><g fill="#fff"><path d="M50 90 C40 70 20 60 5 62 C20 50 40 52 50 65 C48 45 32 32 15 30 C35 22 52 32 58 50 C62 32 80 22 98 28 C82 32 68 46 65 64 C78 54 96 56 100 68 C86 64 68 70 58 88 Z"/></g></svg>
@@ -961,7 +1131,7 @@
         <ellipse cx="20" cy="10" rx="7" ry="10"/><ellipse cx="20" cy="10" rx="7" ry="10" transform="rotate(72 20 20)"/><ellipse cx="20" cy="10" rx="7" ry="10" transform="rotate(144 20 20)"/><ellipse cx="20" cy="10" rx="7" ry="10" transform="rotate(216 20 20)"/><ellipse cx="20" cy="10" rx="7" ry="10" transform="rotate(288 20 20)"/><circle cx="20" cy="20" r="4" fill="#F6F4EF"/>
       </g>
     </svg>
-    <p style="color:rgba(255,255,255,.8); max-width:420px; margin:0 auto 22px;">Skip the platform fees — message us directly and we'll take care of the rest.</p>
+    <p style="color:rgba(255,255,255,.8); max-width:420px; margin:0 auto 22px;">Skip the platform fees. Message us directly and we'll take care of the rest.</p>
     <div class="cta-row" style="justify-content:center;">
       <span class="btn-coming-soon">🌺 Coming Soon</span>
     </div>
@@ -973,7 +1143,7 @@
     <img class="badge" src="sunny-heaven-logo.png" alt="Sunny Heaven & Aloha Valentina logo">
     <div class="foot-tag">Sunny Heaven &amp; Aloha Valentina</div>
     <p>Turtle Bay Resort, North Shore O'ahu</p>
-    <p class="mahalo">Slow down. Explore more. Enjoy island time. Mahalo for staying with us — we hope this guide helps you discover a few favorite places that bring you back to the North Shore again soon.</p>
+    <p class="mahalo">Slow down. Explore more. Enjoy island time. Mahalo for staying with us, and we hope this guide helps you discover a few favorite places that bring you back to the North Shore again soon.</p>
   </div>
 </footer>
 
@@ -990,6 +1160,26 @@
     menuBtn.classList.remove('open');
     menuBtn.setAttribute('aria-expanded', false);
   }));
+
+  // Reviews carousel
+  (function(){
+    const root = document.getElementById('reviewsCarousel');
+    if (!root) return;
+    const slides = root.querySelectorAll('.review-slide');
+    const dots = root.querySelectorAll('.review-dot');
+    let idx = 0;
+    let timer;
+    function show(i){
+      slides.forEach((s, n) => s.classList.toggle('active', n === i));
+      dots.forEach((d, n) => d.classList.toggle('active', n === i));
+      idx = i;
+    }
+    function next(){ show((idx + 1) % slides.length); }
+    function startTimer(){ timer = setInterval(next, 6000); }
+    function resetTimer(){ clearInterval(timer); startTimer(); }
+    dots.forEach((d, n) => d.addEventListener('click', () => { show(n); resetTimer(); }));
+    startTimer();
+  })();
 </script>
 
 </body>
